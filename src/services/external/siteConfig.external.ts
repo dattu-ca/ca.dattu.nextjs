@@ -2,7 +2,7 @@
 
 import {iSiteConfig} from "~models/siteConfig.model";
 
-const fetchSiteConfigFromExternal = () => {
+const fetchSiteConfig = () => {
     return new Promise<iSiteConfig>((resolve) => {
         resolve({
             title: 'dattu.ca | Portfolio | Personal Blog',
@@ -13,4 +13,4 @@ const fetchSiteConfigFromExternal = () => {
     })
 }
 
-export {fetchSiteConfigFromExternal}
+export {fetchSiteConfig}
