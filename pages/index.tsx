@@ -1,6 +1,6 @@
-import {GetStaticProps} from 'next'
+import {GetServerSideProps} from 'next'
 import {Container} from "@mui/material";
-
+import {fetchSiteConfig} from '~services/siteConfig.service';
 
 const HomePage = () => {
     return (
@@ -12,13 +12,8 @@ const HomePage = () => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const siteConfig = {
-        title: 'dattu.ca | Portfolio | Personal Blog',
-        description: 'This site is a portfolio as an actor, developer and a human; as well as a personal blog.',
-        keywords: 'Actor, Developer, Human, Spiritual, Portfolio, Blog',
-        author: 'Dattu Patel'
-    };
+export const getServerSideProps: GetServerSideProps = async () => {
+    const siteConfig = await fetchSiteConfig();
     return {
         props: {
             siteConfig
