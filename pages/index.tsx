@@ -1,6 +1,6 @@
 import {GetStaticProps} from 'next'
 import {Container} from "@mui/material";
-import {fetchSiteConfig} from "~services/external/siteConfig.external";
+import {fetchSiteConfig} from "~src/services/external/siteConfig.external";
 
 const HomePage = () => {
     return (

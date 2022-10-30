@@ -1,6 +1,6 @@
 // import {axiosContentful} from './axios.config';
 
-import {iSiteConfig} from "~models/siteConfig.model";
+import {iSiteConfig} from "~src/models";
 
 const fetchSiteConfig = () => {
     return new Promise<iSiteConfig>((resolve) => {

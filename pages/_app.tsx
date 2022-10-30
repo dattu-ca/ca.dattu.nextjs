@@ -2,17 +2,18 @@ import {AppProps} from 'next/app';
 import {ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {CacheProvider, EmotionCache} from '@emotion/react';
-import {theme} from '~styles/theme';
-import createEmotionCache from '~styles/createEmotionCache';
-import {iSiteConfig} from "~models/siteConfig.model";
-import Head from "next/head";
+import {theme} from '~src/styles/theme';
+import createEmotionCache from '~src/styles/createEmotionCache';
+import {HeadComponent} from "~src/components/";
+import {iHeaderNavigation, iSiteConfig} from "~src/models";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
-    siteConfig: iSiteConfig
+    siteConfig: iSiteConfig;
+    headerNavigation: iHeaderNavigation;
 }
 
 const MyApp = (props: MyAppProps) => {
@@ -20,13 +21,7 @@ const MyApp = (props: MyAppProps) => {
     const {siteConfig} = pageProps;
     return (
         <CacheProvider value={emotionCache}>
-            <Head>
-                <title>{siteConfig?.title}</title>
-                <meta name="description" content={siteConfig?.description}/>
-                <meta name="keywords" content={siteConfig?.keywords}/>
-                <meta name="author" content={siteConfig?.author}/>
-                <meta name="viewport" content="initial-scale=1, width=device-width"/>
-            </Head>
+            <HeadComponent siteConfig={siteConfig}/>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Component {...pageProps} />
