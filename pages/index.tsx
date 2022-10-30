@@ -1,6 +1,6 @@
-import {GetServerSideProps} from 'next'
+import {GetStaticProps} from 'next'
 import {Container} from "@mui/material";
-import {fetchSiteConfig} from '~services/siteConfig.service';
+import {fetchSiteConfigFromExternal} from "~services/siteConfig.api";
 
 const HomePage = () => {
     return (
@@ -12,8 +12,8 @@ const HomePage = () => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const siteConfig = await fetchSiteConfig();
+export const getStaticProps: GetStaticProps = async () => {
+    const siteConfig = await fetchSiteConfigFromExternal();
     return {
         props: {
             siteConfig
