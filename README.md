@@ -1,3 +1,20 @@
+# dattu.ca ReadMe
+
+## Setup
+- Clone code
+- run `npm install`
+- run `npm run dev`
+- The application will run on `http://localhost:3000`
+
+### Material UI setup
+- Source: [https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript)
+
+
+
+
+
+-------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
