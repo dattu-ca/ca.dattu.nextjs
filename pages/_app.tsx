@@ -6,24 +6,30 @@ import {theme} from '~src/styles/theme';
 import createEmotionCache from '~src/styles/createEmotionCache';
 import {HeadComponent} from "~src/components/";
 import {iHeaderNavigation, iSiteConfig} from "~src/models";
+import {HeaderComponent} from "~src/components";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
+
+interface iPageProps {
+    siteData: [iSiteConfig, iHeaderNavigation]
+}
+
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
-    siteConfig: iSiteConfig;
-    headerNavigation: iHeaderNavigation;
+    pageProps: iPageProps
 }
 
 const MyApp = (props: MyAppProps) => {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
-    const {siteConfig} = pageProps;
+    const {siteData} = pageProps;
     return (
         <CacheProvider value={emotionCache}>
-            <HeadComponent siteConfig={siteConfig}/>
+            <HeadComponent siteConfig={siteData[0]}/>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
+                <HeaderComponent headerNavigation={siteData[1]} />
                 <Component {...pageProps} />
             </ThemeProvider>
         </CacheProvider>

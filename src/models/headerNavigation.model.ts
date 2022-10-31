@@ -3,10 +3,23 @@ interface iLink {
     label: string;
     visible: boolean;
 }
+
+interface iLogo {
+    alt: string;
+}
+
+interface iSearch {
+    placeholder?: string;
+    ariaLabel?: string;
+}
+
+
 interface iHeaderNavigation {
-    links: Array<iLink>
+    logo: iLogo;
+    links: Array<iLink>;
+    search?: iSearch;
 }
 
 export type {
     iHeaderNavigation
-}
+};
