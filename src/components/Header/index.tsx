@@ -26,7 +26,7 @@ interface iProps {
 
 const HeaderComponent = (props: iProps) => {
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up("sm"));
+    const matches = useMediaQuery(theme.breakpoints.down("sm"));
     const [anchorElNav, setAnchorElNav] = useState<(EventTarget & HTMLButtonElement) | null>(null);
 
     const {headerNavigation} = props;
@@ -44,7 +44,7 @@ const HeaderComponent = (props: iProps) => {
         <Container maxWidth={false}>
             <Toolbar disableGutters>
                 {
-                    matches ? (
+                    !matches ? (
                         <Box width="100%" sx={{display: "flex", alignItems: "center"}}>
                             <Box mr={2}>
                                 <NextLink href="./">
