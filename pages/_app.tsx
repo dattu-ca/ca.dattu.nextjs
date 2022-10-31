@@ -24,6 +24,9 @@ interface MyAppProps extends AppProps {
 const MyApp = (props: MyAppProps) => {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
     const {siteData} = pageProps;
+    if(!siteData){
+        return null;
+    }
     return (
         <CacheProvider value={emotionCache}>
             <HeadComponent siteConfig={siteData[0]}/>
