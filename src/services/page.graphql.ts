@@ -17,7 +17,6 @@ const getAllPages = async (): Promise<iPages> => {
         query {
           pageCollection{
             items{
-              id
               title
               slug
               content{
