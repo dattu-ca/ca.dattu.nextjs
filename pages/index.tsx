@@ -1,22 +1,22 @@
 import {GetStaticProps} from 'next'
 import {Container} from "@mui/material";
-import {fetchSiteConfig} from "~services/external/siteConfig.external";
+import {fetchSiteData} from "~src/services";
 
 const HomePage = () => {
     return (
         <div>
             <Container>
-                Hello Container
+                Hello Container TEST
             </Container>
         </div>
     )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const siteConfig = await fetchSiteConfig();
+    const data = await fetchSiteData();
     return {
         props: {
-            siteConfig
+            siteData: data
         },
     }
 }
