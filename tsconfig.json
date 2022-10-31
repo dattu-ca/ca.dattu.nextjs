@@ -18,12 +18,6 @@
     "paths": {
       "~/*" : ["*"],
       "~src/*" : ["src/*"],
-      "~models/*" : ["src/models/*"],
-      "~components/*" : ["src/components/*"],
-      "~services/*" : ["src/services/*"],
-      "~styles/*" : ["src/styles/*"],
-      "~utils/*" : ["src/utils/*"],
-      "~contexts/*" : ["src/utils/contexts/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
