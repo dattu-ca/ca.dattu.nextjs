@@ -7,6 +7,8 @@ import createEmotionCache from "~src/styles/createEmotionCache";
 import {HeadComponent} from "~src/components/";
 import {iHeaderNavigation, iSiteConfig} from "~src/models";
 import {HeaderComponent} from "~src/components";
+import {ApolloProvider} from "@apollo/client";
+import {gqlClient} from "~src/services/contentful.config";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -25,14 +27,16 @@ const MyApp = (props: MyAppProps) => {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
     const {siteData} = pageProps;
     return (
-        <CacheProvider value={emotionCache}>
-            <HeadComponent siteConfig={siteData ? siteData[0] : undefined}/>
-            <ThemeProvider theme={theme}>
-                <CssBaseline/>
-                <HeaderComponent headerNavigation={siteData ? siteData[1] : undefined}/>
-                <Component {...pageProps} />
-            </ThemeProvider>
-        </CacheProvider>
+        <ApolloProvider client={gqlClient}>
+            <CacheProvider value={emotionCache}>
+                <HeadComponent siteConfig={siteData ? siteData[0] : undefined}/>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline/>
+                    <HeaderComponent headerNavigation={siteData ? siteData[1] : undefined}/>
+                    <Component {...pageProps} />
+                </ThemeProvider>
+            </CacheProvider>
+        </ApolloProvider>
     );
 };
 
