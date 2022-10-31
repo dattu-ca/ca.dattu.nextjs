@@ -21,16 +21,18 @@ import SearchComponent from "./search";
 
 
 interface iProps {
-    headerNavigation: iHeaderNavigation;
+    headerNavigation?: iHeaderNavigation;
 }
 
 const HeaderComponent = (props: iProps) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up("sm"));
+    const [anchorElNav, setAnchorElNav] = useState<(EventTarget & HTMLButtonElement) | null>(null);
 
     const {headerNavigation} = props;
-
-    const [anchorElNav, setAnchorElNav] = useState<(EventTarget & HTMLButtonElement) | null>(null);
+    if (!headerNavigation) {
+        return null;
+    }
     const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -128,8 +130,8 @@ const HeaderComponent = (props: iProps) => {
                                     open={Boolean(anchorElNav)}
                                     onClose={handleCloseNavMenu}
                                     sx={{
-                                        display: "block",
-                                        
+                                        display: "block"
+
                                     }}
                                 >
                                     {

@@ -2,11 +2,14 @@ import Head from "next/head";
 import {iSiteConfig} from "~src/models";
 
 interface iProps {
-    siteConfig: iSiteConfig
+    siteConfig?: iSiteConfig
 }
 
 const HeadComponent = (props: iProps) => {
     const {siteConfig} = props;
+    if(!siteConfig){
+        return null;
+    }
     return (
         <Head>
             <title>{siteConfig?.title}</title>
