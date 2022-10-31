@@ -10,8 +10,13 @@ export const headerNavigationMock = {
                 visible: true
             },
             {
-                href: "/about",
+                href: "/page/about",
                 label: "About",
+                visible: true
+            },
+            {
+                href: "/page/contact",
+                label: "Contact",
                 visible: true
             }
         ],

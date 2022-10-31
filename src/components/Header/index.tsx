@@ -47,7 +47,7 @@ const HeaderComponent = (props: iProps) => {
                     !matches ? (
                         <Box width="100%" sx={{display: "flex", alignItems: "center"}}>
                             <Box mr={2}>
-                                <NextLink href="./">
+                                <NextLink href="/">
                                     <Button>
                                         <Logo height={120}
                                               width="100%"
@@ -90,7 +90,7 @@ const HeaderComponent = (props: iProps) => {
                     ) : (
                         <Box width="100%" sx={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
                             <Box mr={1}>
-                                <NextLink href="./">
+                                <NextLink href="/">
                                     <Button>
                                         <Logo height={60}
                                               width="100%"
