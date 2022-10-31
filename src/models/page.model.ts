@@ -1,4 +1,5 @@
 interface iPage {
+    id?: string;
     slug: string;
     title: string;
     content: any;    
