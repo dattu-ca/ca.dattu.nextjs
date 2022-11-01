@@ -36,8 +36,8 @@ const getAllPages = async (): Promise<iPages> => {
 const getPage = async (slug: string): Promise<iPage> => {
     const result = await gqlClient.query({
         query: gql`
-            query {
-              pageCollection (where :{ slug:"${slug}" } ){
+            query($slug: String) {
+              pageCollection (where :{ slug: $slug } ){
                 items{
                   title
                   slug
@@ -47,7 +47,10 @@ const getPage = async (slug: string): Promise<iPage> => {
                 }
               }
             }
-        `
+        `,
+        variables:{
+            slug: slug
+        }
     });
     const pages = morphPages(result);
     return pages[0];
