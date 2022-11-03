@@ -1,7 +1,13 @@
-interface iPage {
+interface iPageSmall {
     slug: string;
+}
+interface iPage extends iPageSmall{    
     title: string;
-    content: any;    
+    content?: any;    
+}
+
+interface iPagesSmall{
+    pages: Array<iPageSmall>
 }
 
 interface iPages {
@@ -9,6 +15,8 @@ interface iPages {
 }
 
 export type {
+    iPageSmall,
     iPage,
+    iPagesSmall,
     iPages
 };

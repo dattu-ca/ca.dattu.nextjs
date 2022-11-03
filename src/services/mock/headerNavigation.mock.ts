@@ -5,19 +5,19 @@ export const headerNavigationMock = {
         },
         links: [
             {
-                href: "/",
-                label: "Home",
-                visible: true
+                "href": "/",
+                "label": "Home",
+                "visible": true
             },
             {
-                href: "/page/about",
-                label: "About",
-                visible: true
+                "href": "/page/about",
+                "label": "About",
+                "visible": true
             },
             {
-                href: "/page/contact",
-                label: "Contact",
-                visible: true
+                "href": "/page/contact",
+                "label": "Contact",
+                "visible": true
             }
         ],
         search: {

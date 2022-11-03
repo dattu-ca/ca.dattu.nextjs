@@ -1,10 +1,4 @@
-import {iHeaderNavigation} from './headerNavigation.model';
-import {iSiteConfig} from './siteConfig.model';
-import {iPages, iPage} from './page.model';
+export * from './headerNavigation.model';
+export * from './siteConfig.model';
+export * from './page.model';
 
-export type{
-    iHeaderNavigation,
-    iSiteConfig,
-    iPages,
-    iPage
-}

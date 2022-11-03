@@ -1,30 +1,49 @@
-import {iPages, iPage} from "~src/models";
-import {pageMocks} from "./mock/page.mock";
-import {getAllPages, getPage} from "./page.graphql";
+import cacheData from "memory-cache";
+import {iPagesSmall, iPage} from "~src/models";
+import {getAllPagesSlugsGql, getPageGql} from "./page.graphql";
+import {iFunctionOptions} from "./model";
 
 
-const fetchPages = async (): Promise<iPages> => {
+const fetchPagesSlugs = async (options: iFunctionOptions = {}): Promise<iPagesSmall> => {
     try {
-        return await getAllPages();
+        const cacheKey = "fetchPagesSlugs";
+        if (!options.byPassCache) {
+            const cachedValue = cacheData.get(cacheKey);
+            if (cachedValue) {
+                return cachedValue;
+            }
+        }
+        const result = await getAllPagesSlugsGql();
+        if (!options.byPassCache) {
+            cacheData.put(cacheKey, result);
+        }
+        return result;
     }
     catch (exception) {
         console.error("Exception in fetchPages", exception);
-        return new Promise<iPages>((resolve) => {
-            resolve({pages: []});
-        });
+        return {pages: []};
     }
 };
 
-const fetchPage = async (slug: string) => {
+const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<iPage | undefined> => {
     try {
-        return await getPage(slug);
+        const cacheKey = `fetchPage_${slug}`;
+        if (!options.byPassCache) {
+            const cachedValue = cacheData.get(cacheKey);
+            if (cachedValue) {
+                return cachedValue;
+            }
+        }
+        const result = await getPageGql(slug);
+        if (!options.byPassCache) {
+            cacheData.put(cacheKey, result);
+        }
+        return result;
     }
     catch (exception) {
         console.error("Exception in fetchPage", exception);
-        return new Promise<iPage | undefined>((resolve) => {
-            resolve(undefined);
-        });
+        return undefined;
     }
 };
 
-export {fetchPages, fetchPage};
+export {fetchPagesSlugs, fetchPage};
