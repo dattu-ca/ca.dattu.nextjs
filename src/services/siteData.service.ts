@@ -4,7 +4,7 @@ import {fetchNavigation} from "./navigation.service";
 
 
 interface iFunction {
-    (): Promise<[iSiteConfig, Array<iLink>]>;
+    (): Promise<[iSiteConfig | null, Array<iLink>]>;
 }
 
 const fetchSiteData: iFunction = async () => {

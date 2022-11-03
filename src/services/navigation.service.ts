@@ -1,7 +1,8 @@
+import {getFromCache, saveToCache} from '~src/utils/cache.utils';
 import {iLink} from "~src/models";
 import {getNavigationGql} from "./navigation.graphql";
-import {iFunctionOptions} from "~src/services/model";
-import {getFromCache, saveToCache} from '~src/utils/cache.utils';
+import {iFunctionOptions} from "./config";
+
 
 
 const fetchNavigation = async (slug: string, options: iFunctionOptions = {}): Promise<Array<iLink>> => {

@@ -14,7 +14,7 @@ import {gqlClient} from "~src/services/config";
 const clientSideEmotionCache = createEmotionCache();
 
 interface iPageProps {
-    siteData: [iSiteConfig, Array<iLink>];
+    siteData: [iSiteConfig | null, Array<iLink>];
 }
 
 interface MyAppProps extends AppProps {

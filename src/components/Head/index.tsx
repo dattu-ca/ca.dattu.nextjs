@@ -2,7 +2,7 @@ import Head from "next/head";
 import {iSiteConfig} from "~src/models";
 
 interface iProps {
-    siteConfig?: iSiteConfig
+    siteConfig: iSiteConfig | null
 }
 
 const HeadComponent = (props: iProps) => {

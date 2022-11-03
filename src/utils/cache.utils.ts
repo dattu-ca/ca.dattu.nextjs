@@ -11,7 +11,7 @@ const saveToCache = <Type>(key: string, data: Type, maxAge = MAX_CACHE_AGE) => {
     cacheData.put(key, timeStampedData);
 };
 
-const getFromCache = <Type>(key: string): (Type | undefined) => {
+const getFromCache = <Type>(key: string): (Type | null) => {
     const cachedRaw = cacheData.get(key);
     if (cachedRaw) {
         const {maxAge} = cachedRaw;
@@ -19,7 +19,7 @@ const getFromCache = <Type>(key: string): (Type | undefined) => {
             return cachedRaw.data as Type;
         }
     }
-    return undefined;
+    return null;
 };
 
 

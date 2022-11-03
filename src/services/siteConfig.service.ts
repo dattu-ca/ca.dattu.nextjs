@@ -1,11 +1,8 @@
 import {iSiteConfig} from "~src/models";
-import {siteConfigMock} from "~src/services/mock/siteConfig.mock";
 
 
-const fetchSiteConfig = () => {
-    return new Promise<iSiteConfig>((resolve) => {
-        return resolve(siteConfigMock.get);
-    });
+const fetchSiteConfig = ():Promise<iSiteConfig | null> => {
+    return new Promise(resolve => resolve(null))
 };
 
 export {fetchSiteConfig};

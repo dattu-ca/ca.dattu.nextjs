@@ -1,7 +1,7 @@
 import {getFromCache, saveToCache} from "~src/utils/cache.utils";
 import {iPagesSmall, iPage} from "~src/models";
 import {getAllPagesSlugsGql, getPageGql} from "./page.graphql";
-import {iFunctionOptions} from "./model";
+import {iFunctionOptions} from "./config";
 
 
 const fetchPagesSlugs = async (options: iFunctionOptions = {}): Promise<iPagesSmall> => {
@@ -25,11 +25,11 @@ const fetchPagesSlugs = async (options: iFunctionOptions = {}): Promise<iPagesSm
     }
 };
 
-const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<iPage | undefined> => {
+const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<iPage | null> => {
     try {
         const cacheKey = `fetchPage_${slug}`;
         if (!options.byPassCache) {
-            const cachedValue = getFromCache<iPage | undefined>(cacheKey);
+            const cachedValue = getFromCache<iPage>(cacheKey);
             if (cachedValue) {
                 return cachedValue;
             }
@@ -42,7 +42,7 @@ const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<
     }
     catch (exception) {
         console.error(`Exception in fetchPage_${slug}`, exception);
-        return undefined;
+        return null;
     }
 };
 
