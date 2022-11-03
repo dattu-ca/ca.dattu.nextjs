@@ -1,6 +1,6 @@
 import {gql} from "@apollo/client";
-import {gqlClient} from "./contentful.config";
 import {iPage, iPageSmall, iPagesSmall} from "~src/models";
+import {gqlClient} from "./config";
 
 
 const morphPagesSmall = (base: any): Array<iPageSmall> => {
@@ -8,15 +8,6 @@ const morphPagesSmall = (base: any): Array<iPageSmall> => {
         slug: item.slug
     } as iPageSmall));
 };
-
-const morphPages = (base: any): Array<iPage> => {
-    return base?.data?.pageCollection?.items?.map((item: any) => ({
-        title: item.title,
-        slug: item.slug,
-        content: item.content
-    } as iPage));
-};
-
 const getAllPagesSlugsGql = async (): Promise<iPagesSmall> => {
     const result = await gqlClient.query({
         query: gql`
@@ -35,6 +26,14 @@ const getAllPagesSlugsGql = async (): Promise<iPagesSmall> => {
     };
 };
 
+
+const morphPages = (base: any): Array<iPage> => {
+    return base?.data?.pageCollection?.items?.map((item: any) => ({
+        title: item.title,
+        slug: item.slug,
+        content: item.content
+    } as iPage));
+};
 const getPageGql = async (slug: string): Promise<iPage> => {
     const result = await gqlClient.query({
         query: gql`
@@ -50,7 +49,7 @@ const getPageGql = async (slug: string): Promise<iPage> => {
               }
             }
         `,
-        variables:{
+        variables: {
             slug: slug
         }
     });

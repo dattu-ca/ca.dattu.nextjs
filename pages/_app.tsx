@@ -5,17 +5,16 @@ import {CacheProvider, EmotionCache} from "@emotion/react";
 import {theme} from "~src/styles/theme";
 import createEmotionCache from "~src/styles/createEmotionCache";
 import {HeadComponent} from "~src/components/";
-import {iHeaderNavigation, iSiteConfig} from "~src/models";
+import {iLink, iSiteConfig} from "~src/models";
 import {HeaderComponent} from "~src/components";
 import {ApolloProvider} from "@apollo/client";
-import {gqlClient} from "~src/services/contentful.config";
+import {gqlClient} from "~src/services/config";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-
 interface iPageProps {
-    siteData: [iSiteConfig, iHeaderNavigation];
+    siteData: [iSiteConfig, Array<iLink>];
 }
 
 interface MyAppProps extends AppProps {
@@ -29,10 +28,10 @@ const MyApp = (props: MyAppProps) => {
     return (
         <ApolloProvider client={gqlClient}>
             <CacheProvider value={emotionCache}>
-                <HeadComponent siteConfig={siteData ? siteData[0] : undefined}/>
+                <HeadComponent siteConfig={siteData?.[0]}/>
                 <ThemeProvider theme={theme}>
                     <CssBaseline/>
-                    <HeaderComponent headerNavigation={siteData ? siteData[1] : undefined}/>
+                    <HeaderComponent links={siteData?.[1]}/>
                     <Component {...pageProps} />
                 </ThemeProvider>
             </CacheProvider>

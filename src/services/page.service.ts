@@ -1,4 +1,4 @@
-import cacheData from "memory-cache";
+import {getFromCache, saveToCache} from "~src/utils/cache.utils";
 import {iPagesSmall, iPage} from "~src/models";
 import {getAllPagesSlugsGql, getPageGql} from "./page.graphql";
 import {iFunctionOptions} from "./model";
@@ -8,14 +8,14 @@ const fetchPagesSlugs = async (options: iFunctionOptions = {}): Promise<iPagesSm
     try {
         const cacheKey = "fetchPagesSlugs";
         if (!options.byPassCache) {
-            const cachedValue = cacheData.get(cacheKey);
+            const cachedValue = getFromCache<iPagesSmall>(cacheKey);
             if (cachedValue) {
                 return cachedValue;
             }
         }
         const result = await getAllPagesSlugsGql();
         if (!options.byPassCache) {
-            cacheData.put(cacheKey, result);
+            saveToCache(cacheKey, result);
         }
         return result;
     }
@@ -29,19 +29,19 @@ const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<
     try {
         const cacheKey = `fetchPage_${slug}`;
         if (!options.byPassCache) {
-            const cachedValue = cacheData.get(cacheKey);
+            const cachedValue = getFromCache<iPage | undefined>(cacheKey);
             if (cachedValue) {
                 return cachedValue;
             }
         }
         const result = await getPageGql(slug);
         if (!options.byPassCache) {
-            cacheData.put(cacheKey, result);
+            saveToCache(cacheKey, result);
         }
         return result;
     }
     catch (exception) {
-        console.error("Exception in fetchPage", exception);
+        console.error(`Exception in fetchPage_${slug}`, exception);
         return undefined;
     }
 };

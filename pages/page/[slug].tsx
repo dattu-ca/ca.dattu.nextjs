@@ -23,7 +23,7 @@ interface iParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const {slug} = context.params as iParams;
     const data = await fetchSiteData();
-    const page = await fetchPage(slug);    
+    const page = await fetchPage(slug);
     return {
         props: {
             siteData: data,
@@ -36,7 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const result = await fetchPagesSlugs();
     const paths = result.pages.map(page => ({params: {slug: page.slug}}));
     return {
-        
+
         paths: paths,
         fallback: true
     };

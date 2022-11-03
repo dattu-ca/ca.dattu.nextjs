@@ -1,14 +1,14 @@
-import {iHeaderNavigation, iSiteConfig} from "~src/models";
+import {iLink, iSiteConfig} from "~src/models";
 import {fetchSiteConfig} from "./siteConfig.service";
-import {fetchHeaderNavigation} from "./headerNaigation.service";
+import {fetchNavigation} from "./navigation.service";
 
 
 interface iFunction {
-    (): Promise<[iSiteConfig, iHeaderNavigation]>;
+    (): Promise<[iSiteConfig, Array<iLink>]>;
 }
 
 const fetchSiteData: iFunction = async () => {
-    return await Promise.all([fetchSiteConfig(), fetchHeaderNavigation()]);
+    return await Promise.all([fetchSiteConfig(), fetchNavigation("header-navigation")]);
 };
 
 export {
