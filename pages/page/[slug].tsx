@@ -23,7 +23,6 @@ interface iParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const {slug} = context.params as iParams;
     const data = await fetchSiteData();
-    console.log(data);
     const page = await fetchPage(slug);
     return {
         props: {

@@ -5,7 +5,7 @@ import {CacheProvider, EmotionCache} from "@emotion/react";
 import {theme} from "~src/styles/theme";
 import createEmotionCache from "~src/styles/createEmotionCache";
 import {HeadComponent} from "~src/components/";
-import {iLink, iSiteConfig} from "~src/models";
+import {iLink, iKeyValue} from "~src/models";
 import {HeaderComponent} from "~src/components";
 import {ApolloProvider} from "@apollo/client";
 import {gqlClient} from "~src/services/config";
@@ -14,7 +14,7 @@ import {gqlClient} from "~src/services/config";
 const clientSideEmotionCache = createEmotionCache();
 
 interface iPageProps {
-    siteData: [iSiteConfig | null, Array<iLink>];
+    siteData: [iKeyValue | null, Array<iLink>];
 }
 
 interface MyAppProps extends AppProps {

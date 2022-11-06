@@ -1,14 +1,14 @@
-import {iLink, iSiteConfig} from "~src/models";
-import {fetchSiteConfig} from "./siteConfig.service";
+import {iLink, iKeyValue} from "~src/models";
+import {fetchKeyValueData} from "./keyValueData.service";
 import {fetchNavigation} from "./navigation.service";
 
 
 interface iFunction {
-    (): Promise<[iSiteConfig | null, Array<iLink>]>;
+    (): Promise<[iKeyValue | null, Array<iLink>]>;
 }
 
 const fetchSiteData: iFunction = async () => {
-    return await Promise.all([fetchSiteConfig(), fetchNavigation("header-navigation")]);
+    return await Promise.all([fetchKeyValueData('site-config', {byPassCache: true}), fetchNavigation("header-navigation")]);
 };
 
 export {

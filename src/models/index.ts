@@ -1,4 +1,4 @@
 export * from './link.model';
-export * from './siteConfig.model';
+export * from './keyValue.model';
 export * from './page.model';
 

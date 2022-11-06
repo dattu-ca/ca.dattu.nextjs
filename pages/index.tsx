@@ -15,7 +15,6 @@ const HomePage = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
     const data = await fetchSiteData();
-    console.log("data", data);
     return {
         props: {
             siteData: data
