@@ -1,22 +1,14 @@
-import {iHeaderNavigation, iSiteConfig} from "~src/models";
-import {fetchSiteConfig} from "./siteConfig.service";
-import {fetchHeaderNavigation} from "./headerNaigation.service";
-import {siteConfigMock} from "~src/services/mock/siteConfig.mock";
-import {headerNavigationMock} from "~src/services/mock/headerNavigation.mock";
+import {iLink, iKeyValue} from "~src/models";
+import {fetchKeyValueData} from "./keyValueData.service";
+import {fetchNavigation} from "./navigation.service";
 
 
 interface iFunction {
-    (): Promise<[iSiteConfig, iHeaderNavigation]>;
+    (): Promise<[iKeyValue | null, Array<iLink>]>;
 }
 
 const fetchSiteData: iFunction = async () => {
-    try {
-        return await Promise.all([fetchSiteConfig(), fetchHeaderNavigation()]);
-    }
-    catch (ex) /* istanbul ignore next */ {        
-        console.error("fetchSiteData logged an error");
-        return [siteConfigMock.get, headerNavigationMock.get];
-    }
+    return await Promise.all([fetchKeyValueData('site-config', {byPassCache: true}), fetchNavigation("header-navigation")]);
 };
 
 export {

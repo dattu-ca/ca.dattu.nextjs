@@ -16,12 +16,12 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 import Logo from "~src/assets/logos/Full-Logo.svg";
-import {iHeaderNavigation} from "~src/models";
+import {iLink} from "~src/models";
 import SearchComponent from "./search";
 
 
 interface iProps {
-    headerNavigation?: iHeaderNavigation;
+    links?: Array<iLink>;
 }
 
 const HeaderComponent = (props: iProps) => {
@@ -29,8 +29,8 @@ const HeaderComponent = (props: iProps) => {
     const matches = useMediaQuery(theme.breakpoints.down("sm"));
     const [anchorElNav, setAnchorElNav] = useState<(EventTarget & HTMLButtonElement) | null>(null);
 
-    const {headerNavigation} = props;
-    if (!headerNavigation) {
+    const {links} = props;
+    if (!links) {
         return null;
     }
     const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
@@ -51,8 +51,8 @@ const HeaderComponent = (props: iProps) => {
                                     <Button>
                                         <Logo height={120}
                                               width="100%"
-                                              alt={headerNavigation.logo.alt}
-                                              title={headerNavigation.logo.alt}/>
+                                              alt={"HELLO WORLD"}
+                                              title={"HELLO WORLD"}/>
                                     </Button>
                                 </NextLink>
                             </Box>
@@ -66,7 +66,7 @@ const HeaderComponent = (props: iProps) => {
                                      }
                                  }}>
                                 {
-                                    headerNavigation.links.map(link => (
+                                    links.map(link => (
                                         <NextLink key={link.href}
                                                   href={link.href}
                                                   passHref>
@@ -83,8 +83,8 @@ const HeaderComponent = (props: iProps) => {
                                 }
                             </Box>
                             <Box>
-                                <SearchComponent ariaLabel={headerNavigation.search?.ariaLabel}
-                                                 placeholder={headerNavigation.search?.placeholder}/>
+                                <SearchComponent ariaLabel={"Search"}
+                                                 placeholder={"Search..."}/>
                             </Box>
                         </Box>
                     ) : (
@@ -94,14 +94,14 @@ const HeaderComponent = (props: iProps) => {
                                     <Button>
                                         <Logo height={60}
                                               width="100%"
-                                              alt={headerNavigation.logo.alt}
-                                              title={headerNavigation.logo.alt}/>
+                                              alt={"HELLO WORLD"}
+                                              title={"HELLO WORLD"}/>
                                     </Button>
                                 </NextLink>
                             </Box>
                             <Box mr={1}>
-                                <SearchComponent ariaLabel={headerNavigation.search?.ariaLabel}
-                                                 placeholder={headerNavigation.search?.placeholder}/>
+                                <SearchComponent ariaLabel={"Search"}
+                                                 placeholder={"Search..."}/>
                             </Box>
                             <Box sx={{display: "flex"}}>
                                 <IconButton
@@ -135,7 +135,7 @@ const HeaderComponent = (props: iProps) => {
                                     }}
                                 >
                                     {
-                                        headerNavigation.links.map((link) => (
+                                        links.map((link) => (
                                             <MenuItem key={link.href}
                                                       onClick={handleCloseNavMenu}>
                                                 <Typography component={NextLink}

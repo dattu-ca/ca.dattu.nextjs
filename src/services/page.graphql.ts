@@ -1,6 +1,30 @@
 import {gql} from "@apollo/client";
-import {gqlClient} from "./contentful.config";
-import {iPage, iPages} from "~src/models";
+import {iPage, iPageSmall, iPagesSmall} from "~src/models";
+import {gqlClient} from "./config";
+
+
+const morphPagesSmall = (base: any): Array<iPageSmall> => {
+    return base?.data?.pageCollection?.items?.map((item: any) => ({
+        slug: item.slug
+    } as iPageSmall));
+};
+const getAllPagesSlugsGql = async (): Promise<iPagesSmall> => {
+    const result = await gqlClient.query({
+        query: gql`
+        query {
+          pageCollection{
+            items{
+              slug
+            }
+          }
+        }
+    `
+    });
+    const pages = morphPagesSmall(result);
+    return {
+        pages
+    };
+};
 
 
 const morphPages = (base: any): Array<iPage> => {
@@ -10,34 +34,11 @@ const morphPages = (base: any): Array<iPage> => {
         content: item.content
     } as iPage));
 };
-
-const getAllPages = async (): Promise<iPages> => {
-    const result = await gqlClient.query({
-        query: gql`
-        query {
-          pageCollection{
-            items{
-              title
-              slug
-              content{
-                json
-              }
-            }
-          }
-        }
-    `
-    });
-    const pages = morphPages(result);
-    return {
-        pages
-    };
-};
-
-const getPage = async (slug: string): Promise<iPage> => {
+const getPageGql = async (slug: string): Promise<iPage> => {
     const result = await gqlClient.query({
         query: gql`
             query($slug: String) {
-              pageCollection (where :{ slug: $slug } ){
+              pageCollection (limit: 1, where :{ slug: $slug } ){
                 items{
                   title
                   slug
@@ -48,7 +49,7 @@ const getPage = async (slug: string): Promise<iPage> => {
               }
             }
         `,
-        variables:{
+        variables: {
             slug: slug
         }
     });
@@ -56,4 +57,4 @@ const getPage = async (slug: string): Promise<iPage> => {
     return pages[0];
 };
 
-export {getAllPages, getPage};
+export {getAllPagesSlugsGql, getPageGql};

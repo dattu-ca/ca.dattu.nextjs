@@ -1,13 +1,21 @@
 import Head from "next/head";
-import {iSiteConfig} from "~src/models";
+import {iKeyValue} from "~src/models";
+
+
+interface iSiteConfig extends iKeyValue {
+    title?: string;
+    description?: string;
+    keywords?: string;
+    author?: string;
+}
 
 interface iProps {
-    siteConfig?: iSiteConfig
+    siteConfig: iSiteConfig | null;
 }
 
 const HeadComponent = (props: iProps) => {
     const {siteConfig} = props;
-    if(!siteConfig){
+    if (!siteConfig) {
         return null;
     }
     return (
@@ -19,6 +27,6 @@ const HeadComponent = (props: iProps) => {
             <meta name="viewport" content="initial-scale=1, width=device-width"/>
         </Head>
     );
-}
+};
 
 export default HeadComponent;
