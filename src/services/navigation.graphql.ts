@@ -4,11 +4,17 @@ import {gqlClient} from "./config";
 
 
 const morphLinks = (base: any): Array<iLink> => {
-    return base.data.navigationCollection.items?.[0]?.links?.map((item: any) => ({
+    const links = JSON.parse(base.data.navigationCollection.items?.[0]?.links) || [];
+    return links?.map((item: any) => ({
         label: item.label,
-        href: item.href,
-        visible: item.visible
-    } as iLink));
+        href: item.url,
+        visible: item.visible,
+        target: item.target,
+        sequence: item.sequence
+    } as iLink)).sort((a:iLink, b: iLink) => {
+        // @ts-ignore
+        return a.sequence < b.sequence ? -1 : 1
+    });
 };
 const getNavigationGql = async (slug: string): Promise<Array<iLink>> => {
     const result = await gqlClient.query({
