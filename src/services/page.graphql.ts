@@ -8,6 +8,7 @@ const morphPagesSmall = (base: any): Array<iPageSmall> => {
         slug: item.slug
     } as iPageSmall));
 };
+
 const getAllPagesSlugsGql = async (): Promise<iPagesSmall> => {
     const result = await gqlClient.query({
         query: gql`
@@ -26,7 +27,6 @@ const getAllPagesSlugsGql = async (): Promise<iPagesSmall> => {
     };
 };
 
-
 const morphPages = (base: any): Array<iPage> => {
     return base?.data?.pageCollection?.items?.map((item: any) => ({
         title: item.title,
@@ -34,6 +34,7 @@ const morphPages = (base: any): Array<iPage> => {
         content: item.content
     } as iPage));
 };
+
 const getPageGql = async (slug: string): Promise<iPage> => {
     const result = await gqlClient.query({
         query: gql`
