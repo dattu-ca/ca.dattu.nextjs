@@ -1,10 +1,12 @@
 import NextCors from "nextjs-cors";
 import {NextApiRequest, NextApiResponse} from "next";
 
+
 export const AllowCORS = async (req: NextApiRequest, res: NextApiResponse) => {
+    const origin = (process.env.ALLOW_CORS as string).split(";");
     await NextCors(req, res, {
         methods: ["GET"],
-        origin: ["http://localhost:3006", "https://dattuca-contentful.netlify.app/"],
+        origin: origin,
         optionsSuccessStatus: 200
     });
 };
