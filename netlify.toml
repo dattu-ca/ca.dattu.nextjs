@@ -9,4 +9,4 @@
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
     [headers.values]
-    Access-Control-Allow-Origin = "http://localhost:3006;https://dattuca-contentful.netlify.app"
+    Access-Control-Allow-Origin = "*"
