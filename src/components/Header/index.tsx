@@ -40,7 +40,9 @@ const HeaderComponent = (props: iProps) => {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-    return <AppBar position="sticky" color="transparent" sx={{backgroundColor: "common.white"}}>
+    return <AppBar position="sticky" color="transparent"
+                   sx={{backgroundColor: "common.white", boxShadow: "inset 0 0 10px rgba(0,0,0,0.3)"}} 
+                   elevation={0}>
         <Container maxWidth={false}>
             <Toolbar disableGutters>
                 {
@@ -52,7 +54,7 @@ const HeaderComponent = (props: iProps) => {
                                         <Logo height={120}
                                               width="100%"
                                               alt={"HELLO WORLD"}
-                                              title={"HELLO WORLD"}/>
+                                              title={"HELLO WORLD"} />
                                     </Button>
                                 </NextLink>
                             </Box>
@@ -84,7 +86,7 @@ const HeaderComponent = (props: iProps) => {
                             </Box>
                             <Box>
                                 <SearchComponent ariaLabel={"Search"}
-                                                 placeholder={"Search..."}/>
+                                                 placeholder={"Search..."} />
                             </Box>
                         </Box>
                     ) : (
@@ -95,13 +97,13 @@ const HeaderComponent = (props: iProps) => {
                                         <Logo height={60}
                                               width="100%"
                                               alt={"HELLO WORLD"}
-                                              title={"HELLO WORLD"}/>
+                                              title={"HELLO WORLD"} />
                                     </Button>
                                 </NextLink>
                             </Box>
                             <Box mr={1}>
                                 <SearchComponent ariaLabel={"Search"}
-                                                 placeholder={"Search..."}/>
+                                                 placeholder={"Search..."} />
                             </Box>
                             <Box sx={{display: "flex"}}>
                                 <IconButton
@@ -113,7 +115,7 @@ const HeaderComponent = (props: iProps) => {
                                     onClick={handleOpenNavMenu}
                                     color="inherit"
                                 >
-                                    <MenuIcon/>
+                                    <MenuIcon />
                                 </IconButton>
                                 <Menu
                                     id="menu-appbar"
