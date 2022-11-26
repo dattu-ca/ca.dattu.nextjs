@@ -1,6 +1,7 @@
 import {gql} from "@apollo/client";
 import {iPage, iPageSmall, iPagesSmall} from "~src/models";
 import {gqlClient} from "./config";
+import {prepareRichText} from "~src/utils/prepareRichText";
 
 
 const morphPagesSmall = (base: any): Array<iPageSmall> => {
@@ -27,12 +28,18 @@ const getAllPagesSlugsGql = async (): Promise<iPagesSmall> => {
     };
 };
 
-const morphPages = (base: any): Array<iPage> => {
-    return base?.data?.pageCollection?.items?.map((item: any) => ({
-        title: item.title,
-        slug: item.slug,
-        content: item.content
-    } as iPage));
+const morphPage = (base: any): Array<iPage> => {
+    return base?.data?.pageCollection?.items?.map((item: any) => {
+        const page: iPage = {
+            pretitle: item.pretitle,
+            title: item.title,
+            slug: item.slug,
+            subtitle: item.subtitle,
+            bannerContent: prepareRichText(item.bannerContent),
+            content: prepareRichText(item.content)
+        };
+        return page;
+    });
 };
 
 const getPageGql = async (slug: string): Promise<iPage> => {
@@ -41,8 +48,14 @@ const getPageGql = async (slug: string): Promise<iPage> => {
             query($slug: String) {
               pageCollection (limit: 1, where :{ slug: $slug } ){
                 items{
+                  friendlyName
+                  pretitle
                   title
                   slug
+                  subtitle
+                  bannerContent{
+                    json
+                  }
                   content{
                     json
                   }
@@ -54,7 +67,7 @@ const getPageGql = async (slug: string): Promise<iPage> => {
             slug: slug
         }
     });
-    const pages = morphPages(result);
+    const pages = morphPage(result);
     return pages[0];
 };
 

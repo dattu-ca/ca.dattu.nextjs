@@ -11,16 +11,19 @@ interface iSiteConfig extends iKeyValue {
 
 interface iProps {
     siteConfig: iSiteConfig | null;
+    pageTitle?:string;
 }
 
 const HeadComponent = (props: iProps) => {
-    const {siteConfig} = props;
+    const {siteConfig, pageTitle} = props;
     if (!siteConfig) {
         return null;
     }
+    const title = `${ pageTitle && pageTitle + ' | ' } ${siteConfig?.title}`;
+    
     return (
         <Head>
-            <title>{siteConfig?.title}</title>
+            <title>{title}</title>
             <meta name="description" content={siteConfig?.description}/>
             <meta name="keywords" content={siteConfig?.keywords}/>
             <meta name="author" content={siteConfig?.author}/>

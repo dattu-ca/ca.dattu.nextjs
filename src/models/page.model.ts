@@ -1,17 +1,24 @@
+import {Document} from "@contentful/rich-text-types";
+
+
 interface iPageSmall {
     slug: string;
 }
-interface iPage extends iPageSmall{    
+
+interface iPage extends iPageSmall {
+    pretitle?: string;
     title: string;
-    content?: any;    
+    subtitle?: string;
+    bannerContent: Document | null;
+    content: Document | null;
 }
 
-interface iPagesSmall{
-    pages: Array<iPageSmall>
+interface iPagesSmall {
+    pages: Array<iPageSmall>;
 }
 
 interface iPages {
-    pages: Array<iPage>
+    pages: Array<iPage>;
 }
 
 export type {
