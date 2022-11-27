@@ -5,7 +5,6 @@ import {getContentWidgetGql} from "./contentWidget.graphql";
 
 
 export const fetchContentWidget = async (id: string, options: iFunctionOptions = {}): Promise<iContentWidget | null> => {
-    console.log("IN fetchContentWidget", id);
     try {
         const cacheKey = `fetchContentWidget_${id}`;
         if (!options.byPassCache) {

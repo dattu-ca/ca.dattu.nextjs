@@ -1,8 +1,8 @@
 import {gql} from "@apollo/client";
 import _ from "lodash";
-import {prepareRichTextWhileMorphing} from "~src/utils/prepareRichTextWhileMorphing";
-import {iBanner, iPage, iPageSmall, iPagesSmall} from "~src/models";
+import {iBanner, iPage} from "~src/models";
 import {gqlClient} from "./config";
+import {prepareRichTextWhileMorphing} from "./morphRichText";
 
 
 

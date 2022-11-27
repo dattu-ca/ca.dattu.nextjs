@@ -1,5 +1,6 @@
 import Head from "next/head";
 import {iKeyValue} from "~src/models";
+import * as React from "react";
 
 
 interface iSiteConfig extends iKeyValue {
@@ -7,6 +8,7 @@ interface iSiteConfig extends iKeyValue {
     description?: string;
     keywords?: string;
     author?: string;
+    primaryColor?: string;
 }
 
 export interface iMetaProps {
@@ -24,6 +26,7 @@ const HeadComponent = (props: iProps) => {
     if (!siteConfig) {
         return null;
     }
+    const primaryColor = siteConfig?.primaryColor || "#139587";
     const title = `${meta?.metaTitle && meta?.metaTitle + " | "} ${siteConfig?.title}`;
     return (
         <Head>
@@ -32,6 +35,7 @@ const HeadComponent = (props: iProps) => {
             <meta name="keywords" content={siteConfig?.keywords} />
             <meta name="author" content={siteConfig?.author} />
             <meta name="viewport" content="initial-scale=1, width=device-width" />
+            <meta name="theme-color" content={primaryColor} />
         </Head>
     );
 };

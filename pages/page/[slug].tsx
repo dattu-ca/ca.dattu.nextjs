@@ -7,7 +7,8 @@ import {
     Box, Container
 } from "@mui/material";
 import BannerComponent from "~src/components/Banner";
-import {RichTextRenderer} from "~src/components/RichTextRenderer";
+import {RichTextRenderer} from "~src/components";
+import ContentRenderer from "../../src/components/ContentRenderer";
 
 
 interface iPageProps {
@@ -29,7 +30,7 @@ const PagesPage = (props: iPageProps) => {
         {
             page.content
             && <Container maxWidth="lg">
-                <RichTextRenderer content={page.content} />
+                <ContentRenderer content={page.content}  />
             </Container>
         }
     </Box>;

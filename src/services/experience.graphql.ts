@@ -1,25 +1,25 @@
 import {gql} from "@apollo/client";
-import {iContentWidget} from "~src/models";
+import {iExperience} from "~src/models";
 import {prepareRichTextWhileMorphing} from "./morphRichText";
 import {gqlClient} from "./config";
 
 
-const morphContentWidget = (base: any): (iContentWidget | null) => {
+const morphExperience = (base: any): (iExperience | null) => {
     if (!base?.data?.contentWidget) {
         return null;
     }
     return base?.data?.contentWidget?.map((item: any) => {
-        const contentWidget: iContentWidget = {
+        const experience: iExperience = {
             __typename: item.__typename,
             id: item.sys.id,
             title: item.title,
-            content: prepareRichTextWhileMorphing(item.content)
+            experiencesList: item.experiencesList
         };
-        return contentWidget;
+        return experience;
     });
 };
 
-const getContentWidgetGql = async (id: string): Promise<iContentWidget | null> => {
+const getExperienceGql = async (id: string): Promise<iExperience | null> => {
     const response = await gqlClient.query({
         query: gql`
             query($id: String){
@@ -39,7 +39,7 @@ const getContentWidgetGql = async (id: string): Promise<iContentWidget | null> =
             id: id
         }
     });
-    return morphContentWidget(response);
+    return morphExperience(response);
 };
 
-export {getContentWidgetGql};
+export {getExperienceGql};

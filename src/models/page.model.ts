@@ -1,11 +1,13 @@
 import {iBanner} from "./banners.model";
 import {Document} from "./contentful.model";
+import {tContentList} from "./contentList.model";
 
-interface iPageSmall {
+
+interface iBasePage {
     slug: string;
 }
 
-interface iPage extends iPageSmall {
+interface iPage extends iBasePage {
     metaTitle?: string;
     metaDescription?: string;
     pretitle?: string;
@@ -14,10 +16,11 @@ interface iPage extends iPageSmall {
     bannerContent: Document | null;
     bannersCollection: iBanner[];
     content: Document | null;
+    contentList: tContentList;
 }
 
 interface iPagesSmall {
-    pages: Array<iPageSmall>;
+    pages: Array<iBasePage>;
 }
 
 interface iPages {
@@ -25,7 +28,7 @@ interface iPages {
 }
 
 export type {
-    iPageSmall,
+    iBasePage,
     iPage,
     iPagesSmall,
     iPages

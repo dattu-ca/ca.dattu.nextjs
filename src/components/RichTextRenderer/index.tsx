@@ -7,8 +7,10 @@ interface iProps {
     content: Document;
 }
 
-export const RichTextRenderer = ({content}: iProps) => {
+const RichTextRenderer = ({content}: iProps) => {
     return <Fragment>
         {documentToReactComponents(content, renderOptions)}
     </Fragment>;
 }; 
+
+export default  RichTextRenderer;

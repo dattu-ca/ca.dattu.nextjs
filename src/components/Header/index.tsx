@@ -53,8 +53,8 @@ const HeaderComponent = (props: iProps) => {
                                     <Button>
                                         <Logo height={120}
                                               width="100%"
-                                              alt={"HELLO WORLD"}
-                                              title={"HELLO WORLD"} />
+                                              alt="logo | dp | dattu.ca"
+                                              title="logo | dp | dattu.ca" />
                                     </Button>
                                 </NextLink>
                             </Box>

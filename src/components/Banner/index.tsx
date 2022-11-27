@@ -3,7 +3,7 @@ import {Container, lighten, Typography, useTheme, Box, Grid} from "@mui/material
 import {Property} from "csstype";
 import {iSize, useWindowSize} from "~src/hooks/useWindowSize";
 import {iBanner, Document} from "~src/models";
-import {RichTextRenderer} from "../RichTextRenderer";
+import RichTextRenderer from "../RichTextRenderer";
 
 
 interface iClasses {
