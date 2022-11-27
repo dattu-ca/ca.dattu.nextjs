@@ -15,7 +15,7 @@ const getKeyValueDataGql = async (slug: string): Promise<iKeyValue> => {
     const result = await gqlClient.query({
         query: gql`
             query($slug: String) {
-              keyValueDataCollection(where: { slug: $slug }) {
+              keyValueDataCollection(limit: 1, where: { slug: $slug }) {
                 items {
                   data
                 }

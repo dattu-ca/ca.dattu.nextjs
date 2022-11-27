@@ -1,15 +1,18 @@
-import {Document} from "@contentful/rich-text-types";
-
+import {iBanner} from "./banners.model";
+import {Document} from "./contentful.model";
 
 interface iPageSmall {
     slug: string;
 }
 
 interface iPage extends iPageSmall {
+    metaTitle?: string;
+    metaDescription?: string;
     pretitle?: string;
     title: string;
     subtitle?: string;
     bannerContent: Document | null;
+    bannersCollection: iBanner[];
     content: Document | null;
 }
 

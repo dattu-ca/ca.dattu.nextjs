@@ -2,8 +2,8 @@ import React, {ReactNode, useEffect, useRef, useState} from "react";
 import {Container, lighten, Typography, useTheme, Box, Grid} from "@mui/material";
 import {Property} from "csstype";
 import {iSize, useWindowSize} from "~src/hooks/useWindowSize";
-import {documentToReactComponents, Options} from "@contentful/rich-text-react-renderer";
-import {Document, BLOCKS} from "@contentful/rich-text-types";
+import {iBanner, Document} from "~src/models";
+import {RichTextRenderer} from "../RichTextRenderer";
 
 
 interface iClasses {
@@ -20,37 +20,17 @@ interface iProps {
     subtitle?: string;
     bannerContent?: Document | null;
     bannerColor?: Property.Color;
-    bannerBg?: string;
+    bannersCollection: iBanner[];
     children?: ReactNode;
     classes?: iClasses;
 }
-
-const renderOptions: Options = {
-    renderText: text => {
-        return text.split("\n").reduce((children: ReactNode[], textSegment: string, index: number) => {
-            return [...children, index > 0 && <br key={index} />, textSegment];
-        }, []);
-    },
-    renderNode: {
-        [BLOCKS.PARAGRAPH]: (node, children) => {
-            const arr = React.Children.toArray(children);
-            if (String(arr[0]).trim() === "") {
-                return <Box mb={2} />;
-            }
-
-            return <Typography>{arr}</Typography>;
-        },
-        [BLOCKS.HEADING_6]: (node, children) => <Typography variant="h6" component="p">{children}</Typography>
-    }
-};
-
 
 const BannerComponent = ({
                              pretitle,
                              title,
                              titleIcon,
                              subtitle,
-                             bannerBg,
+                             bannersCollection,
                              bannerColor,
                              classes,
                              bannerContent,
@@ -72,16 +52,27 @@ const BannerComponent = ({
     return <Box className={classes?.banner}
                 ref={wrapperRef}
                 sx={{
-                    backgroundColor: bannerColor ? bannerColor : lighten(theme.palette.secondary.main, 0.0),
-                    backgroundImage: `url("${bannerBg}")`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
                     height: containerHeight * (3 / 4),
                     px: theme.spacing(3),
                     position: "relative",
                     boxShadow: theme.shadows[4],
                     marginBottom: (containerHeight - (wrapperHeight - 60 - 10)) / 10
                 }}>
+        <Box component="span"
+             role="img"
+             aria-label={bannersCollection?.[0]?.fileName}
+             aria-description={bannersCollection?.[0]?.description}
+             sx={{
+                 backgroundColor: bannerColor ? bannerColor : lighten(theme.palette.secondary.main, 0.0),
+                 backgroundImage: `url("${bannersCollection?.[0]?.url}")`,
+                 backgroundSize: "cover",
+                 backgroundRepeat: "no-repeat",
+                 height: "100%",
+                 width: "100%",
+                 position: "absolute",
+                 top: 0,
+                 left: 0
+             }} />
         <Container maxWidth="lg"
                    component={Box}
                    className={classes?.container}
@@ -148,7 +139,7 @@ const BannerComponent = ({
                     bannerContent
                     && (
                         <Box mt={2}>
-                            {documentToReactComponents(bannerContent, renderOptions)}
+                            <RichTextRenderer content={bannerContent} />
                         </Box>
                     )
                 }
@@ -161,7 +152,6 @@ const BannerComponent = ({
                     )
                 }
             </Box>
-
         </Container>
     </Box>;
 };

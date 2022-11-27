@@ -20,7 +20,7 @@ const ProgrammerPage = () => {
         <Box component="main">
             <BannerComponent pretitle="HELLO WORLD!!!"
                              title={"I am a Web Developer"}
-                             bannerBg="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80">
+                             bannersCollection={[]}>
                 <Typography variant="subtitle1" component="p">
                     I am a passionate and hard working web developer with 15+ years of experience.
                     <br />

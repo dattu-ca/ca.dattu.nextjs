@@ -1,29 +1,7 @@
 import {getFromCache, saveToCache} from "~src/utils/cache.utils";
-import {iPagesSmall, iPage} from "~src/models";
-import {getAllPagesSlugsGql, getPageGql} from "./page.graphql";
+import {iPage} from "~src/models";
 import {iFunctionOptions} from "./config";
-
-
-const fetchPagesSlugs = async (options: iFunctionOptions = {}): Promise<iPagesSmall> => {
-    try {
-        const cacheKey = "fetchPagesSlugs";
-        if (!options.byPassCache) {
-            const cachedValue = getFromCache<iPagesSmall>(cacheKey);
-            if (cachedValue) {
-                return cachedValue;
-            }
-        }
-        const result = await getAllPagesSlugsGql();
-        if (!options.byPassCache) {
-            saveToCache(cacheKey, result);
-        }
-        return result;
-    }
-    catch (exception) {
-        console.error("Exception in fetchPages", exception);
-        return {pages: []};
-    }
-};
+import {getPageGql} from "./page.graphql";
 
 const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<iPage | null> => {
     try {
@@ -46,4 +24,4 @@ const fetchPage = async (slug: string, options: iFunctionOptions = {}): Promise<
     }
 };
 
-export {fetchPagesSlugs, fetchPage};
+export {fetchPage};

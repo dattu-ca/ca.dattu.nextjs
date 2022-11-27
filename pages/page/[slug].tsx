@@ -1,14 +1,13 @@
 import {GetStaticPaths, GetStaticProps, GetStaticPropsContext} from "next";
 import {ParsedUrlQuery} from "querystring";
-import {Helmet} from "react-helmet";
 
 import {fetchPage, fetchPagesSlugs, fetchSiteData} from "~src/services";
 import {iPage} from "~src/models";
 import {
-    Box,
-    Typography
+    Box, Container
 } from "@mui/material";
 import BannerComponent from "~src/components/Banner";
+import {RichTextRenderer} from "~src/components/RichTextRenderer";
 
 
 interface iPageProps {
@@ -24,15 +23,15 @@ const PagesPage = (props: iPageProps) => {
             && <BannerComponent pretitle={page.pretitle}
                                 title={page.title}
                                 subtitle={page.subtitle}
-                                bannerContent={page.bannerContent} />
+                                bannerContent={page.bannerContent}
+                                bannersCollection={page.bannersCollection} />
         }
-
-        <Box pb={5} />
         {
-            page
-            && <pre>{JSON.stringify(page, null, 2)}</pre>
+            page.content
+            && <Container maxWidth="lg">
+                <RichTextRenderer content={page.content} />
+            </Container>
         }
-
     </Box>;
 };
 
