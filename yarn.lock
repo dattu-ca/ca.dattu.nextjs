@@ -1043,6 +1043,13 @@
     "@contentful/rich-text-types" "^15.12.1"
     escape-html "^1.0.3"
 
+"@contentful/rich-text-react-renderer@^15.12.1":
+  version "15.12.1"
+  resolved "https://registry.npmjs.org/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.12.1.tgz"
+  integrity sha512-bQ69cN51iGBTF3/nYi5MGUaDJ/lnrEXtCUBCxulIZ0fLS/AAEledZTJcEKs+PKeYYgDqiUVDsmx2xZP2QsJJ+Q==
+  dependencies:
+    "@contentful/rich-text-types" "^15.12.1"
+
 "@contentful/rich-text-types@^15.12.1":
   version "15.13.2"
   resolved "https://registry.npmjs.org/@contentful/rich-text-types/-/rich-text-types-15.13.2.tgz"
@@ -1963,6 +1970,11 @@
   version "0.0.29"
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
+
+"@types/lodash@*":
+  version "4.14.190"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.190.tgz"
+  integrity sha512-5iJ3FBJBvQHQ8sFhEhJfjUP+G+LalhavTkYyrAYqz5MEJG+erSv0k9KJLb6q7++17Lafk1scaTIFXcMJlwK8Mw==
 
 "@types/memory-cache@^0.2.2":
   version "0.2.2"
@@ -4676,7 +4688,7 @@ lodash.merge@^4.6.2:
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
-lodash@^4.17.11, lodash@^4.17.15:
+lodash@^4.17.11, lodash@^4.17.15, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -4830,7 +4842,7 @@ natural-compare@^1.4.0:
     "@next/swc-win32-ia32-msvc" "13.0.0"
     "@next/swc-win32-x64-msvc" "13.0.0"
 
-nextjs-cors@2.1.2:
+nextjs-cors@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/nextjs-cors/-/nextjs-cors-2.1.2.tgz"
   integrity sha512-2yOVivaaf2ILe4f/qY32hnj3oC77VCOsUQJQfhVMGsXE/YMEWUY2zy78sH9FKUCM7eG42/l3pDofIzMD781XGA==
@@ -5216,7 +5228,7 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^17.0.0 || ^18.0.0", react-dom@^18.0.0, react-dom@^18.0.0-0, "react-dom@>= 16.8.0", react-dom@>=16.6.0, react-dom@18.2.0:
+"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.8.6 || ^17.0.0 || ^18.0.0", "react-dom@^17.0.0 || ^18.0.0", react-dom@^18.0.0, react-dom@^18.0.0-0, "react-dom@>= 16.8.0", react-dom@>=16.6.0, react-dom@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -5254,7 +5266,7 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-"react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.0.0-0, react@^18.2.0, "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=16.6.0, react@>=16.8.0, react@18.2.0:
+"react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.6 || ^17.0.0 || ^18.0.0", "react@^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.0.0-0, react@^18.2.0, "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=16.6.0, react@>=16.8.0, react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

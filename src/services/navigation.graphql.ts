@@ -2,6 +2,7 @@ import {gql} from "@apollo/client";
 import {iLink} from "~src/models";
 import {gqlClient} from "./config";
 
+
 const morphLinks = (base: any): Array<iLink> => {
     const links = JSON.parse(base.data.navigationCollection.items?.[0]?.links) || [];
     return links?.map((item: any) => ({
@@ -10,9 +11,9 @@ const morphLinks = (base: any): Array<iLink> => {
         visible: item.visible,
         target: item.target,
         sequence: item.sequence
-    } as iLink)).sort((a:iLink, b: iLink) => {
+    } as iLink)).sort((a: iLink, b: iLink) => {
         // @ts-ignore
-        return a.sequence < b.sequence ? -1 : 1
+        return a?.sequence < b?.sequence ? -1 : 1;
     });
 };
 
