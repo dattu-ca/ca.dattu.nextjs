@@ -12,4 +12,11 @@ const HomePage = () => {
     );
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+
+    return {
+        props: {}
+    };
+};
+
 export default HomePage;
