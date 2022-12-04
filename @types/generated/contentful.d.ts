@@ -7,11 +7,11 @@ export interface IContentWidgetFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
+  /** Slug */
+  slug?: string | undefined;
+
   /** Title */
   title?: string | undefined;
-
-  /** Slug */
-  slug: string;
 
   /** Content */
   content?: Document | undefined;
@@ -36,9 +36,46 @@ export interface IContentWidget extends Entry<IContentWidgetFields> {
   };
 }
 
+export interface ICoverFields {
+  /** Friendly Name */
+  friendlyName?: string | undefined;
+
+  /** Title */
+  title?: string | undefined;
+
+  /** Slug */
+  slug: string;
+
+  /** Content */
+  content?: Document | undefined;
+}
+
+/** This content model is a collection of widgets.
+This will be queried by external applications. */
+
+export interface ICover extends Entry<ICoverFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "cover";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IExperienceWidgetFields {
   /** Friendly Name */
   friendlyName: string;
+
+  /** Slug */
+  slug?: string | undefined;
 
   /** Title */
   title?: string | undefined;
@@ -67,15 +104,15 @@ export interface IExperienceWidget extends Entry<IExperienceWidgetFields> {
   };
 }
 
-export interface IJsonDataFields {
+export interface IJsonDataWidgetFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
+  /** Slug */
+  slug?: string | undefined;
+
   /** Name */
   name: string;
-
-  /** Slug */
-  slug: string;
 
   /** Data */
   data?: string | undefined;
@@ -83,7 +120,7 @@ export interface IJsonDataFields {
 
 /** JSON Object */
 
-export interface IJsonData extends Entry<IJsonDataFields> {
+export interface IJsonDataWidget extends Entry<IJsonDataWidgetFields> {
   sys: {
     id: string;
     type: string;
@@ -92,7 +129,7 @@ export interface IJsonData extends Entry<IJsonDataFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "jsonData";
+        id: "jsonDataWidget";
         linkType: "ContentType";
         type: "Link";
       };
@@ -104,11 +141,11 @@ export interface INavigationWidgetFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
-  /** Name */
-  name: string;
-
   /** Slug */
   slug?: string | undefined;
+
+  /** Name */
+  name: string;
 
   /** Links */
   links?: string | undefined;
@@ -188,14 +225,14 @@ export interface IYouTubeWidgetFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
+  /** Slug */
+  slug?: string | undefined;
+
   /** Youtube Link */
   link?: string | undefined;
 
   /** Name */
   name?: string | undefined;
-
-  /** Slug */
-  slug?: string | undefined;
 
   /** Description */
   description?: Document | undefined;
@@ -222,16 +259,18 @@ export interface IYouTubeWidget extends Entry<IYouTubeWidgetFields> {
 
 export type CONTENT_TYPE =
   | "contentWidget"
+  | "cover"
   | "experienceWidget"
-  | "jsonData"
+  | "jsonDataWidget"
   | "navigationWidget"
   | "page"
   | "youTubeWidget";
 
 export type IEntry =
   | IContentWidget
+  | ICover
   | IExperienceWidget
-  | IJsonData
+  | IJsonDataWidget
   | INavigationWidget
   | IPage
   | IYouTubeWidget;
