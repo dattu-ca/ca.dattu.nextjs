@@ -10,11 +10,11 @@ const HeadComponent = (props: iProps) => {
     const siteData = props.siteData;
     const appSettings = siteData.appSettings.contentBlocks.JSONDataWidget?.find(widget => widget.slug === "site-config");
 
-    const title = appSettings?.data?.title;
-    const description = appSettings?.data?.description;
-    const keywords = appSettings?.data?.keywords;
-    const author = appSettings?.data?.author;
-    const primaryColor = appSettings?.data?.primaryColor || "#139587";
+    const title = appSettings?.data.title;
+    const description = appSettings?.data.description;
+    const keywords = appSettings?.data.keywords;
+    const author = appSettings?.data.author;
+    const primaryColor = appSettings?.data.primaryColor || "#139587";
 
     return (
         <Head>
