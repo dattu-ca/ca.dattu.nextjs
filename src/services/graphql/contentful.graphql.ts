@@ -9,22 +9,47 @@ interface iProps {
     skip?: number,
 }
 
-export const WIDGET_TYPE_NAME ={
-    JSON_DATA_WIDGET: 'JsonDataWidget',
-    NAVIGATION_WIDGET: 'NavigationWidget',
-}
+export const WIDGET_TYPE_NAME = {
+    JSON_DATA_WIDGET: "JsonDataWidget",
+    NAVIGATION_WIDGET: "NavigationWidget",
+    ASSET_WIDGET: "AssetWidget",
+    ASSETS_GALLERY_WIDGET: "AssetsGalleryWidget"
+};
 
 
-const FRAGMENTS = {
-    JSON_DATA_WIDGET: `JsonDataWidget{
-                            slug
-                            data
-                          }`,
-    NAVIGATION_WIDGET: `NavigationWidget{
-                            slug
-                            links
-                          }`
-}
+const FRAGMENTS: any = {};
+FRAGMENTS.JSON_DATA_WIDGET = `JsonDataWidget{
+                                slug
+                                data
+                              }`;
+FRAGMENTS.NAVIGATION_WIDGET = `NavigationWidget{
+                                slug
+                                links
+                              }`;
+FRAGMENTS.ASSET_WIDGET = `AssetWidget{
+                              slug
+                              name
+                              description
+                              asset {
+                                url
+                                fileName
+                                description
+                              }
+                            }
+                          `;
+FRAGMENTS.ASSETS_GALLERY_WIDGET = `AssetsGalleryWidget{
+                                slug
+                                content {
+                                  links {
+                                    entries {
+                                      block{
+                                        typename: __typename
+                                        ... on ${FRAGMENTS.ASSET_WIDGET}
+                                      }
+                                    }
+                                  }
+                                }
+                              }`;
 
 
 export const COVER_QUERY = (props: iProps) => {
@@ -40,7 +65,7 @@ export const COVER_QUERY = (props: iProps) => {
     if (!variables.order) {
         variables.order = [];
     }
-    
+
     return gqlClient.query({
         query: gql`
             query CoverCollection($limit: Int, $skip: Int, $where: CoverFilter, $order: [CoverOrder]) {
@@ -51,7 +76,6 @@ export const COVER_QUERY = (props: iProps) => {
                   }
                   slug
                   content {
-                    json
                     links {
                       entries {
                         block{
@@ -61,6 +85,7 @@ export const COVER_QUERY = (props: iProps) => {
                           typename: __typename
                           ... on ${FRAGMENTS.JSON_DATA_WIDGET}
                           ... on ${FRAGMENTS.NAVIGATION_WIDGET}
+                          ... on ${FRAGMENTS.ASSETS_GALLERY_WIDGET}
                         }
                       }
                     }

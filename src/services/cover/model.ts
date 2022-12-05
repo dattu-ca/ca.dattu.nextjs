@@ -2,11 +2,13 @@ import {ICoverFields} from "~/@types/generated/contentful";
 import {WIDGET_TYPE_NAME} from "~gqlContentful";
 import {iJSONDataWidget, morphJSONDataWidget} from "../jsonDataWidget";
 import {iNavigationWidget, morphNavigationWidget} from "../navigationWidget";
+import {iAssetsGalleryWidget, morphAssetsGalleryWidget} from "../assetsGalleryWidget";
 
 
 type tContent = {
     JSONDataWidget?: iJSONDataWidget[],
     NavigationWidget?: iNavigationWidget[]
+    AssetsGalleryWidget?: iAssetsGalleryWidget[]
 }
 
 
@@ -57,6 +59,16 @@ export const morphCover = (raw: any): (tCover[] | null) => {
                                         contentBlocks.NavigationWidget = [
                                             ...(contentBlocks.NavigationWidget || []),
                                             navigation
+                                        ];
+                                    }
+                                    break;
+                                }
+                                case WIDGET_TYPE_NAME.ASSETS_GALLERY_WIDGET: {
+                                    const assetsGallery = morphAssetsGalleryWidget(block);
+                                    if (assetsGallery) {
+                                        contentBlocks.AssetsGalleryWidget = [
+                                            ...(contentBlocks.AssetsGalleryWidget || []),
+                                            assetsGallery
                                         ];
                                     }
                                     break;
