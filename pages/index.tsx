@@ -1,6 +1,6 @@
 import {GetStaticProps} from "next";
 import {Container} from "@mui/material";
-import {fetchSiteData} from "~src/services";
+import {fetchDataForPageLoad} from "~src/services/pageLoad";
 
 
 const HomePage = () => {
@@ -13,11 +13,11 @@ const HomePage = () => {
     );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-    const data = await fetchSiteData();
+export const getStaticProps: GetStaticProps = async (x) => {
+    const siteData = await fetchDataForPageLoad();
     return {
         props: {
-            siteData: data
+            siteData
         }
     };
 };

@@ -1,9 +1,5 @@
-import HeadComponent from './Head';
-import HeaderComponent from './Header';
-import Link from './Link';
+import {AppLayoutComponent} from './AppLayout';
 
 export {
-    HeadComponent,
-    HeaderComponent,
-    Link
+    AppLayoutComponent
 }
