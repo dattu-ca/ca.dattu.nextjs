@@ -1,6 +1,6 @@
 import Head from "next/head";
 import * as _ from 'lodash';
-import {tSiteData} from "~src/services/pageLoad";
+import {tSiteData} from "~src/services";
 
 
 interface iProps {

@@ -1,6 +1,6 @@
 import {GetStaticProps} from "next";
 import {Container} from "@mui/material";
-import {fetchDataForPageLoad} from "~src/services/pageLoad";
+import {fetchDataForPageLoad} from "~src/services";
 
 
 const HomePage = () => {

@@ -15,7 +15,7 @@ import {
     MenuItem
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import {tSiteData} from "~src/services/pageLoad";
+import {tSiteData} from "~src/services";
 import SearchComponent from "./Search";
 
 

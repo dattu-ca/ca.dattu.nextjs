@@ -1,5 +1,5 @@
 import React from "react";
-import {tSiteData} from "~src/services/pageLoad";
+import {tSiteData} from "~src/services";
 import HeadComponent from "./Head";
 import {HeaderComponent} from "./Header";
 
