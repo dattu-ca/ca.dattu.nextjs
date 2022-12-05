@@ -61,12 +61,14 @@ const HeaderComponent = (props: iProps) => {
                                     <Button>
                                         {
                                             logos.full
-                                            && <img src={logos.full.asset.url} 
-                                                    alt={`${logos.full.name} ${logos.full.description || ''}` }
-                                                    title={`${logos.full.name} ${logos.full.description || ''}` }
-                                                    width="100%" 
-                                                    height={120}
-                                            />
+                                            && <picture>
+                                                <img src={logos.full.asset.url}
+                                                     alt={`${logos.full.name} ${logos.full.description || ''}` }
+                                                     title={`${logos.full.name} ${logos.full.description || ''}` }
+                                                     width="100%"
+                                                     height={120}
+                                                />
+                                            </picture>
                                         }
                                     </Button>
                                 </NextLink>
@@ -109,12 +111,14 @@ const HeaderComponent = (props: iProps) => {
                                     <Button>
                                         {
                                             logos.small
-                                            && <img src={logos.small.asset.url}
-                                                    alt={`${logos.small.name} ${logos.small.description || ''}` }
-                                                    title={`${logos.small.name} ${logos.small.description || ''}` }
-                                                    width="100%"
-                                                    height={60}
-                                            />
+                                            && <picture>
+                                                <img src={logos.small.asset.url}
+                                                     alt={`${logos.small.name} ${logos.small.description || ''}` }
+                                                     title={`${logos.small.name} ${logos.small.description || ''}` }
+                                                     width="100%"
+                                                     height={60}
+                                                />
+                                            </picture>
                                         }
                                     </Button>
                                 </NextLink>
