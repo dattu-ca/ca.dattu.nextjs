@@ -19,6 +19,8 @@ const morphContentWidget = (base: any): (iContentWidget | null) => {
     });
 };
 
+
+
 const getContentWidgetGql = async (id: string): Promise<iContentWidget | null> => {
     const response = await gqlClient.query({
         query: gql`

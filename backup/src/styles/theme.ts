@@ -8,12 +8,12 @@ interface iOptions {
     secondary: string;
 }
 
-const getTheme = (options?: (iOptions | undefined)): Theme => {
+const getTheme = (options: iOptions): Theme => {
     const breakpoints = createBreakpoints({});
 
 
-    const primary = options?.primary || "#139587";
-    const secondary = options?.secondary || "#986D42";
+    const primary = options.primary || "#139587";
+    const secondary = options.secondary || "#986D42";
 
 
     return createTheme({

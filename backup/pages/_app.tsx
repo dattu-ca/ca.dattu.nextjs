@@ -5,16 +5,18 @@ import CssBaseline from "@mui/material/CssBaseline";
 import {CacheProvider, EmotionCache} from "@emotion/react";
 import {getTheme} from "~src/styles/theme";
 import createEmotionCache from "~src/styles/createEmotionCache";
-
-import {gqlClient} from "~gqlConfig";
-import {tSiteData} from "~src/services/pageLoad";
-import {AppLayoutComponent} from "~src/components";
+import {HeadComponent, iMetaProps} from "~src/components/";
+import {iLink, iKeyValue} from "~src/models";
+import {HeaderComponent} from "~src/components";
+import {gqlClient} from "~src/services/config";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
+
 interface iPageProps {
-    siteData: tSiteData;
+    siteData: [iKeyValue | null, Array<iLink>];
+    page: iMetaProps;
 }
 
 interface MyAppProps extends AppProps {
@@ -24,17 +26,23 @@ interface MyAppProps extends AppProps {
 
 const MyApp = (props: MyAppProps) => {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
+    const {siteData, page} = pageProps;
+    const siteConfig = siteData?.[0];
+    const links = siteData?.[1];
 
-    const theme = getTheme();
-
+    const theme = getTheme({
+        primary: siteConfig?.primaryColor,
+        secondary: siteConfig?.secondaryColor
+    });
+    
     return (
         <ApolloProvider client={gqlClient}>
             <CacheProvider value={emotionCache}>
+                <HeadComponent siteConfig={siteConfig} meta={page} />
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <AppLayoutComponent siteData={pageProps.siteData}>
-                        <Component />
-                    </AppLayoutComponent>
+                    <HeaderComponent links={links} />
+                    <Component {...pageProps} />
                 </ThemeProvider>
             </CacheProvider>
         </ApolloProvider>
