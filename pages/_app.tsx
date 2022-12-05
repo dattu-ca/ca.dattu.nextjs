@@ -14,12 +14,12 @@ import {AppLayoutComponent} from "~src/components";
 const clientSideEmotionCache = createEmotionCache();
 
 interface iPageProps {
-    siteData: tSiteData
+    siteData: tSiteData;
 }
 
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
-    pageProps: iPageProps
+    pageProps: iPageProps;
 }
 
 const MyApp = (props: MyAppProps) => {
@@ -33,8 +33,8 @@ const MyApp = (props: MyAppProps) => {
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <AppLayoutComponent siteData={pageProps.siteData}>
-                        <Component />    
-                    </AppLayoutComponent>                    
+                        <Component />
+                    </AppLayoutComponent>
                 </ThemeProvider>
             </CacheProvider>
         </ApolloProvider>

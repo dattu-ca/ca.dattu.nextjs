@@ -25,7 +25,7 @@ export const fetchDataForPageLoad = async () => {
     ]);
     const siteData: tSiteData = {
         appSettings: result[0] as tCover,
-        header: result[1] as tCover
-    };
+        header: result[1] as tCover,
+    }
     return siteData;
 };

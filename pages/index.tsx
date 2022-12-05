@@ -14,7 +14,7 @@ const HomePage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async (x) => {
-    const siteData = await fetchDataForPageLoad();    
+    const siteData = await fetchDataForPageLoad();
     return {
         props: {
             siteData
