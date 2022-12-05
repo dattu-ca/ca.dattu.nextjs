@@ -6,7 +6,7 @@ import {HeaderComponent} from "./Header";
 
 interface iProps {
     children: React.ReactNode;
-    siteData: tSiteData
+    siteData?: tSiteData
 }
 
 const AppLayoutComponent = ({children, siteData}: iProps) => {

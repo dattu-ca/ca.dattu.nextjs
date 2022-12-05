@@ -20,7 +20,7 @@ import SearchComponent from "./Search";
 
 
 interface iProps {
-    siteData: tSiteData;
+    siteData?: tSiteData;
 }
 
 const HeaderComponent = (props: iProps) => {
@@ -29,9 +29,9 @@ const HeaderComponent = (props: iProps) => {
     const [anchorElNav, setAnchorElNav] = useState<(EventTarget & HTMLButtonElement) | null>(null);
 
     const {siteData} = props;
-    const links = siteData.header.contentBlocks.NavigationWidget?.find(widget => widget.slug === "header-navigation")?.links;
-    const headerConfig = siteData.header.contentBlocks.JSONDataWidget?.find(widget => widget.slug === "header-config")?.data;
-    const headerLogos = siteData.header.contentBlocks.AssetsGalleryWidget?.find(widget => widget.slug === "header-logos")?.assets;
+    const links = siteData?.header?.contentBlocks?.NavigationWidget?.find(widget => widget.slug === "header-navigation")?.links;
+    const headerConfig = siteData?.header?.contentBlocks?.JSONDataWidget?.find(widget => widget.slug === "header-config")?.data;
+    const headerLogos = siteData?.header?.contentBlocks?.AssetsGalleryWidget?.find(widget => widget.slug === "header-logos")?.assets;
 
     const logos = {
         full: headerLogos?.find(logo => logo.slug === "logo-full"),
