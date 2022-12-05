@@ -4,7 +4,7 @@ import {tSiteData} from "./model";
 
 export const fetchDataForPageLoad = async () => {
     const result = await Promise.all([
-        new Promise(async (resolve, reject) => {
+        new Promise(async (resolve) => {
             try {
                 resolve(await fetchCover("app-settings-cover"));
             }
@@ -13,7 +13,7 @@ export const fetchDataForPageLoad = async () => {
                 resolve({});
             }
         }),
-        new Promise(async (resolve, reject) => {
+        new Promise(async (resolve) => {
             try {
                 resolve(await fetchCover("header-cover"));
             }
