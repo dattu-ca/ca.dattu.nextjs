@@ -14,7 +14,7 @@ import {AppLayoutComponent} from "~src/components";
 const clientSideEmotionCache = createEmotionCache();
 
 interface iPageProps {
-    siteData: tSiteData;
+    siteData?: tSiteData;
 }
 
 interface MyAppProps extends AppProps {
