@@ -13,7 +13,7 @@ const HomePage = () => {
     );
 };
 
-export const getStaticProps: GetStaticProps = async (x) => {
+export const getStaticProps: GetStaticProps = async () => {
     const siteData = await fetchDataForPageLoad();
     return {
         props: {
