@@ -8,6 +8,7 @@ export interface iAssetsGalleryWidget {
 }
 
 export const morphAssetsGalleryWidget = (raw: any): iAssetsGalleryWidget | undefined => {
+    
     if (raw) {
         return {
             slug: raw.slug,

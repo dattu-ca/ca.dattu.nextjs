@@ -11,11 +11,10 @@ module.exports = {
         '!<rootDir>/*.config.js',
         '!<rootDir>/coverage/**',
         '!<rootDir>/*.js',
-        '!<rootDir>/src/services/index.ts',
-        '!<rootDir>/src/components/index.ts',
-        '!<rootDir>/src/models/**',
-        '!<rootDir>/src/styles/**',
-        '!<rootDir>/pages/**',
+        '!<rootDir>/_backup/**',
+        // '!<rootDir>/src/components/index.ts',
+        // '!<rootDir>/src/styles/**',
+        // '!<rootDir>/pages/**',
         '!<rootDir>/src/utils/tests/**',
     ],
     moduleNameMapper: {
@@ -31,12 +30,14 @@ module.exports = {
         '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,
 
         // Handle module aliases
-        '^~/(.*)$': '<rootDir>/$1',
-        '^~src/(.*)$': '<rootDir>/src/$1',
+        '^~/(.*)$': '<rootDir>/src/$1',
+        '^~pages/(.*)$': '<rootDir>/pages/$1',
+        '^~gqlConfig': '<rootDir>/src/services/graphql/graphql.config.ts',
+        '^~gqlContentful': '<rootDir>/src/services/graphql/contentful.graphql.ts',
     },
     // Add more setup options before each test is run
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-    testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
+    testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '<rootDir>/_backup/'],
     testEnvironment: 'jsdom',
     transform: {
         // Use babel-jest to transpile tests with the next/babel preset
