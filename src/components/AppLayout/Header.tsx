@@ -62,8 +62,8 @@ const HeaderComponent = (props: iProps) => {
                                         {
                                             logos.full
                                             && <img src={logos.full.asset.url} 
-                                                    alt={`${logos.full.name} ${logos.full.description}` }
-                                                    title={`${logos.full.name} ${logos.full.description}` }
+                                                    alt={`${logos.full.name} ${logos.full.description || ''}` }
+                                                    title={`${logos.full.name} ${logos.full.description || ''}` }
                                                     width="100%" 
                                                     height={120}
                                             />
@@ -110,8 +110,8 @@ const HeaderComponent = (props: iProps) => {
                                         {
                                             logos.small
                                             && <img src={logos.small.asset.url}
-                                                    alt={`${logos.small.name} ${logos.small.description}` }
-                                                    title={`${logos.small.name} ${logos.small.description}` }
+                                                    alt={`${logos.small.name} ${logos.small.description || ''}` }
+                                                    title={`${logos.small.name} ${logos.small.description || ''}` }
                                                     width="100%"
                                                     height={60}
                                             />
