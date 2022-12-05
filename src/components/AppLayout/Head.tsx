@@ -4,12 +4,12 @@ import {tSiteData} from "~src/services/pageLoad";
 
 
 interface iProps {
-    siteData: tSiteData;
+    siteData?: tSiteData;
 }
 
 const HeadComponent = (props: iProps) => {
     const siteData = props.siteData;
-    const appSettings =  siteData.appSettings.contentBlocks.JSONDataWidget?.find(widget => widget.slug === "site-config");
+    const appSettings =  siteData?.appSettings?.contentBlocks?.JSONDataWidget?.find(widget => widget.slug === "site-config");
 
     const title = _.get(appSettings, "data.title");
     const description = _.get(appSettings, "data.description");
