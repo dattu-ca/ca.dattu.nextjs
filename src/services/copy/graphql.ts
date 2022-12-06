@@ -1,7 +1,7 @@
 import {COPY_QUERY} from "~gqlContentful";
-import {Copy, morphCopy} from "./model";
+import {tCopy, morphCopy} from "./model";
 
-const fetchDataGql = async (slug: string): Promise<Copy[] | null> => {
+const fetchDataGql = async (slug: string): Promise<tCopy[] | null> => {
     const response = await COPY_QUERY({
         where: {
             slug: slug
