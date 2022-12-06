@@ -1,18 +1,18 @@
 import React from "react";
-import {tSiteData} from "~src/services";
+import {tScaffoldingData} from "~src/services";
 import HeadComponent from "./Head";
 import {HeaderComponent} from "./Header";
 
 
 interface iProps {
     children: React.ReactNode;
-    siteData?: tSiteData
+    scaffoldingData?: tScaffoldingData
 }
 
-const AppLayoutComponent = ({children, siteData}: iProps) => {
+const AppLayoutComponent = ({children, scaffoldingData}: iProps) => {
     return <>
-        <HeadComponent siteData={siteData} />
-        <HeaderComponent siteData={siteData} />
+        <HeadComponent scaffoldingData={scaffoldingData} />
+        <HeaderComponent scaffoldingData={scaffoldingData} />
         {children}
     </>;
 };

@@ -7,14 +7,14 @@ import {getTheme} from "~src/styles/theme";
 import createEmotionCache from "~src/styles/createEmotionCache";
 
 import {gqlClient} from "~gqlConfig";
-import {tSiteData} from "~src/services/pageLoad";
+import {tScaffoldingData} from "~src/services";
 import {AppLayoutComponent} from "~src/components";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 interface iPageProps {
-    siteData?: tSiteData;
+    scaffoldingData?: tScaffoldingData;
 }
 
 interface MyAppProps extends AppProps {
@@ -32,7 +32,7 @@ const MyApp = (props: MyAppProps) => {
             <CacheProvider value={emotionCache}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <AppLayoutComponent siteData={pageProps.siteData}>
+                    <AppLayoutComponent scaffoldingData={pageProps.scaffoldingData}>
                         <Component />
                     </AppLayoutComponent>
                 </ThemeProvider>

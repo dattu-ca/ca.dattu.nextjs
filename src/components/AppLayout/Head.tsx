@@ -1,14 +1,14 @@
 import Head from "next/head";
 import * as _ from 'lodash';
-import {tSiteData} from "~src/services";
+import {tScaffoldingData} from "~src/services";
 
 
 interface iProps {
-    siteData?: tSiteData;
+    scaffoldingData?: tScaffoldingData;
 }
 
 const HeadComponent = (props: iProps) => {
-    const siteData = props.siteData;
+    const siteData = props.scaffoldingData;
     const appSettings =  siteData?.appSettings?.contentBlocks?.JSONDataWidget?.find(widget => widget.slug === "site-config");
 
     const title = _.get(appSettings, "data.title");

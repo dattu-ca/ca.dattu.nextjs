@@ -1,8 +1,8 @@
 import {fetchCopy, tCopy} from "../copy";
-import {tSiteData} from "./model";
+import {tScaffoldingData} from "./model";
 
 
-export const fetchDataForPageLoad = async () => {
+export const fetchScaffoldingData = async () => {
     const result = await Promise.all([
         new Promise(async (resolve) => {
             try {
@@ -23,7 +23,7 @@ export const fetchDataForPageLoad = async () => {
             }
         })
     ]);
-    const siteData: tSiteData = {
+    const siteData: tScaffoldingData = {
         appSettings: result[0] as tCopy,
         header: result[1] as tCopy,
     }
