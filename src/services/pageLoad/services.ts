@@ -6,7 +6,7 @@ export const fetchDataForPageLoad = async () => {
     const result = await Promise.all([
         new Promise(async (resolve) => {
             try {
-                resolve(await fetchCover("app-settings-cover"));
+                resolve(await fetchCover("app-settings-document"));
             }
             catch (ex) {
                 console.error(ex);
@@ -15,7 +15,7 @@ export const fetchDataForPageLoad = async () => {
         }),
         new Promise(async (resolve) => {
             try {
-                resolve(await fetchCover("header-cover"));
+                resolve(await fetchCover("header-document"));
             }
             catch (ex) {
                 console.error(ex);

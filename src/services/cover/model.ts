@@ -19,10 +19,10 @@ export type tCover = ICoverFields & {
 
 
 export const morphCover = (raw: any): (tCover[] | null) => {
-    if (!raw?.data?.coverCollection) {
+    if (!raw?.data?.documentCollection) {
         return null;
     }
-    return raw?.data?.coverCollection.items?.map((item: any) => {
+    return raw?.data?.documentCollection.items?.map((item: any) => {
         const fields: tCover = {
             id: item.sys.id,
             slug: item.slug,
@@ -63,12 +63,12 @@ export const morphCover = (raw: any): (tCover[] | null) => {
                                     }
                                     break;
                                 }
-                                case WIDGET_TYPE_NAME.ASSETS_GALLERY_WIDGET: {
-                                    const assetsGallery = morphAssetsGalleryWidget(block);
-                                    if (assetsGallery) {
+                                case WIDGET_TYPE_NAME.ASSETS_COLLECTION: {
+                                    const assetsGalleryCollection = morphAssetsGalleryWidget(block);
+                                    if (assetsGalleryCollection) {
                                         contentBlocks.AssetsGalleryWidget = [
                                             ...(contentBlocks.AssetsGalleryWidget || []),
-                                            assetsGallery
+                                            assetsGalleryCollection
                                         ];
                                     }
                                     break;

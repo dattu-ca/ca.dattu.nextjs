@@ -13,20 +13,20 @@ export const WIDGET_TYPE_NAME = {
     JSON_DATA_WIDGET: "JsonDataWidget",
     NAVIGATION_WIDGET: "NavigationWidget",
     ASSET_WIDGET: "AssetWidget",
-    ASSETS_GALLERY_WIDGET: "AssetsGalleryWidget"
+    ASSETS_COLLECTION: "AssetsCollection"
 };
 
 
 const FRAGMENTS: any = {};
-FRAGMENTS.JSON_DATA_WIDGET = `JsonDataWidget{
+FRAGMENTS.JSON_DATA_WIDGET = `${WIDGET_TYPE_NAME.JSON_DATA_WIDGET}{
                                 slug
                                 data
                               }`;
-FRAGMENTS.NAVIGATION_WIDGET = `NavigationWidget{
+FRAGMENTS.NAVIGATION_WIDGET = `${WIDGET_TYPE_NAME.NAVIGATION_WIDGET}{
                                 slug
                                 links
                               }`;
-FRAGMENTS.ASSET_WIDGET = `AssetWidget{
+FRAGMENTS.ASSET_WIDGET = `${WIDGET_TYPE_NAME.ASSET_WIDGET}{
                               slug
                               name
                               description
@@ -37,7 +37,7 @@ FRAGMENTS.ASSET_WIDGET = `AssetWidget{
                               }
                             }
                           `;
-FRAGMENTS.ASSETS_GALLERY_WIDGET = `AssetsGalleryWidget{
+FRAGMENTS.ASSETS_GALLERY_WIDGET = `${WIDGET_TYPE_NAME.ASSETS_COLLECTION}{
                                 slug
                                 content {
                                   links {
@@ -68,8 +68,8 @@ export const COVER_QUERY = (props: iProps) => {
 
     return gqlClient.query({
         query: gql`
-            query CoverCollection($limit: Int, $skip: Int, $where: CoverFilter, $order: [CoverOrder]) {
-              coverCollection(limit: $limit, skip: $skip, where: $where, order: $order) {
+            query DocumentCollection($limit: Int, $skip: Int, $where: DocumentFilter, $order: [DocumentOrder]) {
+              documentCollection(limit: $limit, skip: $skip, where: $where, order: $order) {
                 items {
                   sys {
                     id
