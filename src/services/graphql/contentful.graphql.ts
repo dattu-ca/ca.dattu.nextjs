@@ -9,7 +9,9 @@ interface iProps {
     skip?: number,
 }
 
-export const WIDGET_TYPE_NAME = {
+export const CONTENT_MODEL_TYPE_NAME = {
+    COPY: "Copy",
+    PAGE: "Page",
     JSON_DATA_WIDGET: "JsonDataWidget",
     NAVIGATION_WIDGET: "NavigationWidget",
     ASSET_WIDGET: "AssetWidget",
@@ -18,15 +20,15 @@ export const WIDGET_TYPE_NAME = {
 
 
 const FRAGMENTS: any = {};
-FRAGMENTS.JSON_DATA_WIDGET = `${WIDGET_TYPE_NAME.JSON_DATA_WIDGET}{
+FRAGMENTS.JSON_DATA_WIDGET = `${CONTENT_MODEL_TYPE_NAME.JSON_DATA_WIDGET}{
                                 slug
                                 data
                               }`;
-FRAGMENTS.NAVIGATION_WIDGET = `${WIDGET_TYPE_NAME.NAVIGATION_WIDGET}{
+FRAGMENTS.NAVIGATION_WIDGET = `${CONTENT_MODEL_TYPE_NAME.NAVIGATION_WIDGET}{
                                 slug
                                 links
                               }`;
-FRAGMENTS.ASSET_WIDGET = `${WIDGET_TYPE_NAME.ASSET_WIDGET}{
+FRAGMENTS.ASSET_WIDGET = `${CONTENT_MODEL_TYPE_NAME.ASSET_WIDGET}{
                               slug
                               name
                               description
@@ -37,7 +39,7 @@ FRAGMENTS.ASSET_WIDGET = `${WIDGET_TYPE_NAME.ASSET_WIDGET}{
                               }
                             }
                           `;
-FRAGMENTS.ASSETS_GALLERY_WIDGET = `${WIDGET_TYPE_NAME.ASSETS_COLLECTION}{
+FRAGMENTS.ASSETS_COLLECTION = `${CONTENT_MODEL_TYPE_NAME.ASSETS_COLLECTION}{
                                 slug
                                 content {
                                   links {
@@ -85,7 +87,7 @@ export const COPY_QUERY = (props: iProps) => {
                           typename: __typename
                           ... on ${FRAGMENTS.JSON_DATA_WIDGET}
                           ... on ${FRAGMENTS.NAVIGATION_WIDGET}
-                          ... on ${FRAGMENTS.ASSETS_GALLERY_WIDGET}
+                          ... on ${FRAGMENTS.ASSETS_COLLECTION}
                         }
                       }
                     }

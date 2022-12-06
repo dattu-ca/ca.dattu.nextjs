@@ -1,5 +1,5 @@
 import {ICopyFields} from "~/@types/generated/contentful";
-import {WIDGET_TYPE_NAME} from "~gqlContentful";
+import {CONTENT_MODEL_TYPE_NAME} from "~gqlContentful";
 import {iJSONDataWidget, morphJSONDataWidget} from "../jsonDataWidget";
 import {iNavigationWidget, morphNavigationWidget} from "../navigationWidget";
 import {iAssetsGalleryWidget, morphAssetsGalleryWidget} from "../assetsGalleryWidget";
@@ -41,7 +41,7 @@ export const morphCopy = (raw: any): (tCopy[] | null) => {
                     if (Array.isArray(blocks)) {
                         blocks.forEach(block => {
                             switch (block.typename) {
-                                case WIDGET_TYPE_NAME.JSON_DATA_WIDGET: {
+                                case CONTENT_MODEL_TYPE_NAME.JSON_DATA_WIDGET: {
                                     const jsonData = morphJSONDataWidget(block);
                                     if (jsonData) {
                                         contentBlocks.JSONDataWidget = [
@@ -51,7 +51,7 @@ export const morphCopy = (raw: any): (tCopy[] | null) => {
                                     }
                                     break;
                                 }
-                                case WIDGET_TYPE_NAME.NAVIGATION_WIDGET: {
+                                case CONTENT_MODEL_TYPE_NAME.NAVIGATION_WIDGET: {
                                     const navigation = morphNavigationWidget(block);
                                     if (navigation) {
                                         contentBlocks.NavigationWidget = [
@@ -61,7 +61,7 @@ export const morphCopy = (raw: any): (tCopy[] | null) => {
                                     }
                                     break;
                                 }
-                                case WIDGET_TYPE_NAME.ASSETS_COLLECTION: {
+                                case CONTENT_MODEL_TYPE_NAME.ASSETS_COLLECTION: {
                                     const assetsGalleryCollection = morphAssetsGalleryWidget(block);
                                     if (assetsGalleryCollection) {
                                         contentBlocks.AssetsGalleryWidget = [
