@@ -1,14 +1,14 @@
 import {getFromCache, saveToCache} from "~src/utils/cache.utils";
 import {iFunctionOptions} from "~gqlConfig";
-import {tCover} from "./model";
+import {Copy} from "./model";
 import {fetchDataGql} from "./graphql";
 
 
-export const fetchCover = async (slug: string, options: iFunctionOptions = {}) => {
-    const cacheKey = `fetchCover_${slug}`;
+export const fetchCopy = async (slug: string, options: iFunctionOptions = {}) => {
+    const cacheKey = `fetchDocument_${slug}`;
     try {
         if (!options.byPassCache) {
-            const cachedValue = getFromCache<tCover>(cacheKey);
+            const cachedValue = getFromCache<Copy>(cacheKey);
             if (cachedValue) {
                 return cachedValue;
             }

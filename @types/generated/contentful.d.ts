@@ -3,7 +3,110 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export interface IContentWidgetFields {
+export interface IAssetsCollectionFields {
+  /** Friendly Name */
+  friendlyName: string;
+
+  /** Name */
+  name: string;
+
+  /** Slug */
+  slug?: string | undefined;
+
+  /** Content */
+  content?: Document | undefined;
+
+  /** Format */
+  format?: "Grid" | "Slider" | undefined;
+}
+
+/** A collection of asset widgets, youtube widgets, etc. */
+
+export interface IAssetsCollection extends Entry<IAssetsCollectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "assetsCollection";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IAssetWidgetFields {
+  /** Friendly Name */
+  friendlyName?: string | undefined;
+
+  /** Name */
+  name: string;
+
+  /** Slug */
+  slug?: string | undefined;
+
+  /** Description */
+  description?: string | undefined;
+
+  /** Asset */
+  asset?: Asset | undefined;
+}
+
+/** Any asset that is referenced, is referenced via this widget. */
+
+export interface IAssetWidget extends Entry<IAssetWidgetFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "assetWidget";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ICategoryMetaFields {
+  /** Friendly Name */
+  friendlyName: string;
+
+  /** Name */
+  name: string;
+
+  /** Slug */
+  slug?: string | undefined;
+
+  /** Description */
+  description?: Document | undefined;
+}
+
+export interface ICategoryMeta extends Entry<ICategoryMetaFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "categoryMeta";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IContentCollectionFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
@@ -17,9 +120,9 @@ export interface IContentWidgetFields {
   content?: Document | undefined;
 }
 
-/** This is the widget with a collection of actual content */
+/** This is the widget with a collection of Content */
 
-export interface IContentWidget extends Entry<IContentWidgetFields> {
+export interface IContentCollection extends Entry<IContentCollectionFields> {
   sys: {
     id: string;
     type: string;
@@ -28,7 +131,7 @@ export interface IContentWidget extends Entry<IContentWidgetFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "contentWidget";
+        id: "contentCollection";
         linkType: "ContentType";
         type: "Link";
       };
@@ -36,7 +139,7 @@ export interface IContentWidget extends Entry<IContentWidgetFields> {
   };
 }
 
-export interface ICoverFields {
+export interface ICopyFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
@@ -50,10 +153,10 @@ export interface ICoverFields {
   content?: Document | undefined;
 }
 
-/** This content model is a collection of widgets.
-This will be queried by external applications. */
+/** Pageless content.
+This isn't considered main content for any particular page, but rather a collection of content that appears on one or more pages as a secondary context */
 
-export interface ICover extends Entry<ICoverFields> {
+export interface ICopy extends Entry<ICopyFields> {
   sys: {
     id: string;
     type: string;
@@ -62,7 +165,7 @@ export interface ICover extends Entry<ICoverFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "cover";
+        id: "copy";
         linkType: "ContentType";
         type: "Link";
       };
@@ -174,7 +277,7 @@ export interface IPageFields {
   /** Friendly Name */
   friendlyName?: string | undefined;
 
-  /** Pretitle */
+  /** Pre-title */
   pretitle?: string | undefined;
 
   /** Title */
@@ -185,21 +288,6 @@ export interface IPageFields {
 
   /** Subtitle */
   subtitle?: string | undefined;
-
-  /** Banners */
-  banners?: Asset[] | undefined;
-
-  /** BannerContent */
-  bannerContent?: Document | undefined;
-
-  /** Content */
-  content?: Document | undefined;
-
-  /** Meta Title */
-  metaTitle?: string | undefined;
-
-  /** Meta Description */
-  metaDescription?: string | undefined;
 }
 
 /** Static Pages */
@@ -258,8 +346,11 @@ export interface IYouTubeWidget extends Entry<IYouTubeWidgetFields> {
 }
 
 export type CONTENT_TYPE =
-  | "contentWidget"
-  | "cover"
+  | "assetsCollection"
+  | "assetWidget"
+  | "categoryMeta"
+  | "contentCollection"
+  | "copy"
   | "experienceWidget"
   | "jsonDataWidget"
   | "navigationWidget"
@@ -267,8 +358,11 @@ export type CONTENT_TYPE =
   | "youTubeWidget";
 
 export type IEntry =
-  | IContentWidget
-  | ICover
+  | IAssetsCollection
+  | IAssetWidget
+  | ICategoryMeta
+  | IContentCollection
+  | ICopy
   | IExperienceWidget
   | IJsonDataWidget
   | INavigationWidget

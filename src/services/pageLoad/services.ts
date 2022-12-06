@@ -1,4 +1,4 @@
-import {fetchCover, tCover} from "../cover";
+import {fetchCopy, tCopy} from "../copy";
 import {tSiteData} from "./model";
 
 
@@ -6,7 +6,7 @@ export const fetchDataForPageLoad = async () => {
     const result = await Promise.all([
         new Promise(async (resolve) => {
             try {
-                resolve(await fetchCover("app-settings-document"));
+                resolve(await fetchCopy("app-settings-copy"));
             }
             catch (ex) {
                 console.error(ex);
@@ -15,7 +15,7 @@ export const fetchDataForPageLoad = async () => {
         }),
         new Promise(async (resolve) => {
             try {
-                resolve(await fetchCover("header-document"));
+                resolve(await fetchCopy("header-copy"));
             }
             catch (ex) {
                 console.error(ex);
@@ -24,8 +24,8 @@ export const fetchDataForPageLoad = async () => {
         })
     ]);
     const siteData: tSiteData = {
-        appSettings: result[0] as tCover,
-        header: result[1] as tCover,
+        appSettings: result[0] as tCopy,
+        header: result[1] as tCopy,
     }
     return siteData;
 };

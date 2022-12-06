@@ -1,7 +1,7 @@
-import {tCover} from "~src/services";
+import {Document} from "~src/services";
 
 
 export type  tSiteData = {
-    appSettings: tCover,
-    header: tCover
+    appSettings: Document,
+    header: Document
 }

@@ -1,2 +1,2 @@
-export * from './cover';
+export * from './copy';
 export * from './pageLoad';

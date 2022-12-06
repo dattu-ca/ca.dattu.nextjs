@@ -1,4 +1,4 @@
-import {ICoverFields} from "~/@types/generated/contentful";
+import {ICopyFields} from "~/@types/generated/contentful";
 import {WIDGET_TYPE_NAME} from "~gqlContentful";
 import {iJSONDataWidget, morphJSONDataWidget} from "../jsonDataWidget";
 import {iNavigationWidget, morphNavigationWidget} from "../navigationWidget";
@@ -12,27 +12,25 @@ type tContent = {
 }
 
 
-export type tCover = ICoverFields & {
+export type tCopy = ICopyFields & {
     id?: string,
     contentBlocks: tContent
 }
 
 
-export const morphCover = (raw: any): (tCover[] | null) => {
-    if (!raw?.data?.documentCollection) {
+export const morphCopy = (raw: any): (tCopy[] | null) => {
+    if (!raw?.data?.copyCollection) {
         return null;
     }
-    return raw?.data?.documentCollection.items?.map((item: any) => {
-        const fields: tCover = {
+    return raw?.data?.copyCollection.items?.map((item: any) => {
+        const fields: tCopy = {
             id: item.sys.id,
             slug: item.slug,
             content: item.content,
             contentBlocks: {}
         };
         return fields;
-    }).map((item: tCover) => {
-
-
+    }).map((item: tCopy) => {
         if (item.content) {
             const content = item.content as any;
             const contentBlocks: tContent = {};

@@ -52,7 +52,7 @@ FRAGMENTS.ASSETS_GALLERY_WIDGET = `${WIDGET_TYPE_NAME.ASSETS_COLLECTION}{
                               }`;
 
 
-export const COVER_QUERY = (props: iProps) => {
+export const COPY_QUERY = (props: iProps) => {
     const variables = {
         ...props
     };
@@ -68,8 +68,8 @@ export const COVER_QUERY = (props: iProps) => {
 
     return gqlClient.query({
         query: gql`
-            query DocumentCollection($limit: Int, $skip: Int, $where: DocumentFilter, $order: [DocumentOrder]) {
-              documentCollection(limit: $limit, skip: $skip, where: $where, order: $order) {
+            query CopyCollection($limit: Int, $skip: Int, $where: CopyFilter, $order: [CopyOrder]) {
+              copyCollection(limit: $limit, skip: $skip, where: $where, order: $order) {
                 items {
                   sys {
                     id
