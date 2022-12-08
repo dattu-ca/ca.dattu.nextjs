@@ -3,21 +3,54 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export interface IAssetsCollectionFields {
-  /** Friendly Name */
-  friendlyName: string;
+export interface IArticleFields {
+  /** Internal Name */
+  internalName: string;
 
-  /** Name */
-  name: string;
+  /** Title */
+  title?: string | undefined;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
 
-  /** Content */
-  content?: Document | undefined;
+  /** Body */
+  body?: Document | undefined;
+}
 
-  /** Format */
-  format?: "Grid" | "Slider" | undefined;
+/** Content.  It can be queried directly or be embedded in Page or Post. */
+
+export interface IArticle extends Entry<IArticleFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "article";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IAssetsCollectionFields {
+  /** Internal Name */
+  internalName: string;
+
+  /** Title */
+  title: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Body */
+  body?: Document | undefined;
+
+  /** Layout */
+  layout?: "Grid" | "Slider" | "Stack" | undefined;
 }
 
 /** A collection of asset widgets, youtube widgets, etc. */
@@ -40,20 +73,23 @@ export interface IAssetsCollection extends Entry<IAssetsCollectionFields> {
 }
 
 export interface IAssetWidgetFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+  /** Internal Name */
+  internalName: string;
 
-  /** Name */
-  name: string;
+  /** Title */
+  title: string;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
 
-  /** Description */
-  description?: string | undefined;
+  /** Body */
+  body?: Document | undefined;
 
   /** Asset */
   asset?: Asset | undefined;
+
+  /** Width */
+  width?: number | undefined;
 }
 
 /** Any asset that is referenced, is referenced via this widget. */
@@ -76,18 +112,20 @@ export interface IAssetWidget extends Entry<IAssetWidgetFields> {
 }
 
 export interface ICategoryMetaFields {
-  /** Friendly Name */
-  friendlyName: string;
+  /** Internal Name */
+  internalName: string;
 
-  /** Name */
-  name: string;
+  /** Title */
+  title: string;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
 
-  /** Description */
-  description?: Document | undefined;
+  /** Body */
+  body?: Document | undefined;
 }
+
+/** Post Categories */
 
 export interface ICategoryMeta extends Entry<ICategoryMetaFields> {
   sys: {
@@ -106,23 +144,18 @@ export interface ICategoryMeta extends Entry<ICategoryMetaFields> {
   };
 }
 
-export interface IContentCollectionFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+export interface IEmailWidgetFields {
+  /** Internal Name */
+  internalName: string;
 
-  /** Slug */
-  slug?: string | undefined;
+  /** Email */
+  email?: string | undefined;
 
-  /** Title */
-  title?: string | undefined;
-
-  /** Content */
-  content?: Document | undefined;
+  /** Type */
+  type?: "Personal" | undefined;
 }
 
-/** This is the widget with a collection of Content */
-
-export interface IContentCollection extends Entry<IContentCollectionFields> {
+export interface IEmailWidget extends Entry<IEmailWidgetFields> {
   sys: {
     id: string;
     type: string;
@@ -131,7 +164,7 @@ export interface IContentCollection extends Entry<IContentCollectionFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "contentCollection";
+        id: "emailWidget";
         linkType: "ContentType";
         type: "Link";
       };
@@ -139,24 +172,24 @@ export interface IContentCollection extends Entry<IContentCollectionFields> {
   };
 }
 
-export interface ICopyFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+export interface IExperiencesCollectionFields {
+  /** Internal Name */
+  internalName: string;
 
   /** Title */
-  title?: string | undefined;
+  title: string;
 
   /** Slug */
   slug: string;
 
-  /** Content */
-  content?: Document | undefined;
+  /** Body */
+  body?: Document | undefined;
 }
 
-/** Pageless content.
-This isn't considered main content for any particular page, but rather a collection of content that appears on one or more pages as a secondary context */
+/** A collection of Experience Widgets */
 
-export interface ICopy extends Entry<ICopyFields> {
+export interface IExperiencesCollection
+  extends Entry<IExperiencesCollectionFields> {
   sys: {
     id: string;
     type: string;
@@ -165,7 +198,7 @@ export interface ICopy extends Entry<ICopyFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "copy";
+        id: "experiencesCollection";
         linkType: "ContentType";
         type: "Link";
       };
@@ -174,21 +207,29 @@ export interface ICopy extends Entry<ICopyFields> {
 }
 
 export interface IExperienceWidgetFields {
-  /** Friendly Name */
-  friendlyName: string;
-
-  /** Slug */
-  slug?: string | undefined;
+  /** Internal Name */
+  internalName: string;
 
   /** Title */
   title?: string | undefined;
 
-  /** Experiences List */
-  experiencesList?: string[] | undefined;
+  /** Slug */
+  slug: string;
+
+  /** Body */
+  body: string[];
+
+  /** Categories */
+  categories?: ICategoryMeta[] | undefined;
+
+  /** Start Date */
+  startDate?: string | undefined;
+
+  /** End Date */
+  endDate?: string | undefined;
 }
 
-/** This is the experience widget.
-It has a title, and a comma separate list of values. */
+/** Individual experiences */
 
 export interface IExperienceWidget extends Entry<IExperienceWidgetFields> {
   sys: {
@@ -208,17 +249,17 @@ export interface IExperienceWidget extends Entry<IExperienceWidgetFields> {
 }
 
 export interface IJsonDataWidgetFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+  /** Internal Name */
+  internalName: string;
+
+  /** Title */
+  title: string;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
 
-  /** Name */
-  name: string;
-
-  /** Data */
-  data?: string | undefined;
+  /** Body */
+  body?: string | undefined;
 }
 
 /** JSON Object */
@@ -240,23 +281,23 @@ export interface IJsonDataWidget extends Entry<IJsonDataWidgetFields> {
   };
 }
 
-export interface INavigationWidgetFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+export interface ILinksWidgetFields {
+  /** Internal Name */
+  internalName: string;
+
+  /** Title */
+  title: string;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
 
-  /** Name */
-  name: string;
-
-  /** Links */
-  links?: string | undefined;
+  /** Body */
+  body?: string | undefined;
 }
 
-/** The list of navigation links. */
+/** The list of links. */
 
-export interface INavigationWidget extends Entry<INavigationWidgetFields> {
+export interface ILinksWidget extends Entry<ILinksWidgetFields> {
   sys: {
     id: string;
     type: string;
@@ -265,7 +306,7 @@ export interface INavigationWidget extends Entry<INavigationWidgetFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "navigationWidget";
+        id: "linksWidget";
         linkType: "ContentType";
         type: "Link";
       };
@@ -274,8 +315,8 @@ export interface INavigationWidget extends Entry<INavigationWidgetFields> {
 }
 
 export interface IPageFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+  /** Internal Name */
+  internalName: string;
 
   /** Pre-title */
   pretitle?: string | undefined;
@@ -284,10 +325,16 @@ export interface IPageFields {
   title: string;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
 
   /** Subtitle */
   subtitle?: string | undefined;
+
+  /** Body */
+  body?: Document | undefined;
+
+  /** Categories */
+  categories?: ICategoryMeta[] | undefined;
 }
 
 /** Static Pages */
@@ -309,24 +356,58 @@ export interface IPage extends Entry<IPageFields> {
   };
 }
 
-export interface IYouTubeWidgetFields {
-  /** Friendly Name */
-  friendlyName?: string | undefined;
+export interface IPersonWidgetFields {
+  /** Internal Name */
+  internalName: string;
+
+  /** First Name */
+  firstName?: string | undefined;
+
+  /** Last Name */
+  lastName?: string | undefined;
+
+  /** Preferred Name */
+  preferredName?: string | undefined;
 
   /** Slug */
-  slug?: string | undefined;
+  slug: string;
+}
+
+export interface IPersonWidget extends Entry<IPersonWidgetFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "personWidget";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IYouTubeWidgetFields {
+  /** Internal Name */
+  internalName: string;
 
   /** Youtube Link */
   link?: string | undefined;
 
-  /** Name */
-  name?: string | undefined;
+  /** Title */
+  title: string;
 
-  /** Description */
-  description?: Document | undefined;
+  /** Slug */
+  slug: string;
+
+  /** Body */
+  body?: Document | undefined;
 }
 
-/** Contains YouTube video data */
+/** Contains a YouTube video */
 
 export interface IYouTubeWidget extends Entry<IYouTubeWidgetFields> {
   sys: {
@@ -346,27 +427,31 @@ export interface IYouTubeWidget extends Entry<IYouTubeWidgetFields> {
 }
 
 export type CONTENT_TYPE =
+  | "article"
   | "assetsCollection"
   | "assetWidget"
   | "categoryMeta"
-  | "contentCollection"
-  | "copy"
+  | "emailWidget"
+  | "experiencesCollection"
   | "experienceWidget"
   | "jsonDataWidget"
-  | "navigationWidget"
+  | "linksWidget"
   | "page"
+  | "personWidget"
   | "youTubeWidget";
 
 export type IEntry =
+  | IArticle
   | IAssetsCollection
   | IAssetWidget
   | ICategoryMeta
-  | IContentCollection
-  | ICopy
+  | IEmailWidget
+  | IExperiencesCollection
   | IExperienceWidget
   | IJsonDataWidget
-  | INavigationWidget
+  | ILinksWidget
   | IPage
+  | IPersonWidget
   | IYouTubeWidget;
 
 export type LOCALE_CODE = "en-CA";

@@ -27,7 +27,7 @@
         "src/*"
       ],
       "~gqlConfig": [
-        "src/services/graphql/graphql.config.ts"
+        "src/services/graphql.config.ts"
       ],
       "~gqlContentful": [
         "src/services/graphql/contentful.graphql.ts"
