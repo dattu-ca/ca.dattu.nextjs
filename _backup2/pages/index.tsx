@@ -1,5 +1,6 @@
 import {GetStaticProps} from "next";
 import {Container} from "@mui/material";
+import {fetchScaffoldingData} from "~src/services";
 
 
 const HomePage = () => {
@@ -13,9 +14,11 @@ const HomePage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-
+    const scaffoldingData = await fetchScaffoldingData();
     return {
-        props: {}
+        props: {
+            scaffoldingData
+        }
     };
 };
 

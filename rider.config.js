@@ -6,7 +6,6 @@ System.config({
                   "paths": {
                       "~/*": ".src/",
                       "~/pages": ".pages/",
-                      "~gqlConfig": ".src/services/graphql.config.ts",
-                      "~gqlContentful": ".src/services/graphql/contentful.graphql.ts",
+                      "~gqlContentfulConfig": ".src/config/gqlContentfulConfig.ts",
                   }
               })

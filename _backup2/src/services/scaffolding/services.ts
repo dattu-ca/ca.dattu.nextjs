@@ -6,7 +6,8 @@ export const fetchScaffoldingData = async () => {
     const result = await Promise.all([
         new Promise(async (resolve) => {
             try {
-                resolve(await fetchCopy("app-settings-copy"));
+                // resolve(await fetchCopy("app-settings-copy"));
+                resolve({});
             }
             catch (ex) {
                 console.error(ex);
@@ -15,7 +16,8 @@ export const fetchScaffoldingData = async () => {
         }),
         new Promise(async (resolve) => {
             try {
-                resolve(await fetchCopy("header-copy"));
+                // resolve(await fetchCopy("header-copy"));
+                resolve({});
             }
             catch (ex) {
                 console.error(ex);

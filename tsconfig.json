@@ -26,11 +26,8 @@
       "~src/*": [
         "src/*"
       ],
-      "~gqlConfig": [
-        "src/services/graphql.config.ts"
-      ],
-      "~gqlContentful": [
-        "src/services/graphql/contentful.graphql.ts"
+      "~gqlContentfulConfig": [
+        "src/config/contentful.graphql.ts"
       ]
     }
   },
@@ -41,6 +38,7 @@
   ],
   "exclude": [
     "node_modules",
-    "_backup"
+    "_backup",
+    "_backup2"
   ]
 }

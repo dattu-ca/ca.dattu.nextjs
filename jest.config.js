@@ -32,8 +32,7 @@ module.exports = {
         // Handle module aliases
         '^~/(.*)$': '<rootDir>/src/$1',
         '^~pages/(.*)$': '<rootDir>/pages/$1',
-        '^~gqlConfig': '<rootDir>/src/services/graphql/graphql.config.ts',
-        '^~gqlContentful': '<rootDir>/src/services/graphql/contentful.graphql.ts',
+        '^~gqlConfig': '<rootDir>/src/config/graphql.config.ts',
     },
     // Add more setup options before each test is run
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
