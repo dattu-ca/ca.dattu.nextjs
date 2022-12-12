@@ -371,6 +371,9 @@ export interface IPersonWidgetFields {
 
   /** Slug */
   slug: string;
+
+  /** Body */
+  body?: Document | undefined;
 }
 
 export interface IPersonWidget extends Entry<IPersonWidgetFields> {
